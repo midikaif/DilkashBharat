@@ -501,7 +501,6 @@ module.exports = [
     country: "India",
     iso2: "IN",
     state: "Jhārkhand",
-
     population: "1073440",
     population_proper: "1073440",
   },

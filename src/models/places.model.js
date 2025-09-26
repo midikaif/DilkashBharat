@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const places = new mongoose.Schema({
+const Places = new mongoose.Schema({
     title: String,
     location: String,
     description: String,
@@ -8,4 +8,4 @@ const places = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('places', places);
+module.exports = mongoose.model('places', Places);
