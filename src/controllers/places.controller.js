@@ -7,17 +7,32 @@ async function showPlaces(req, res) {
 
 async function singlePlace(req, res) {
   const place = await placesModel.findById(req.params.id);
-  res.render("places/showPlace", { place });
+  res.render("places/show", { place });
 }
 
 function newPlaceForm(req, res) {
-  res.render("places/addPlace");
+  res.render("places/add");
 }
 
 async function addNewPlace(req,res){
-    const place = await placesModel.create(req.body.places);
+    const place = await placesModel.create(req.body.place);
     res.redirect(`places/${place._id}`);
 }
 
+async function showEditPlace(req,res){
+    const place = await placesModel.findById(req.params.id);
+    res.render('places/edit', {place})
+}
 
-module.exports = { showPlaces, singlePlace, newPlaceForm, addNewPlace };
+async function editPlace(req,res){
+    const updatedPlace = await placesModel.findByIdAndUpdate(req.params.id,{...req.body.place});
+    res.redirect(`/places/${updatedPlace._id}`);
+}
+
+async function deletePlace(req,res){
+    await placesModel.findByIdAndDelete(req.params.id);
+    res.redirect('/places')
+}
+
+
+module.exports = { showPlaces, singlePlace, newPlaceForm, addNewPlace,showEditPlace, editPlace, deletePlace };
