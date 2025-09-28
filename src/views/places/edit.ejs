@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Place</title>
-  </head>
-  <body>
+<% layout('layouts/boilerplate')%>
     <h1>Add new place</h1>
     <form action="/places/<%=place._id%>?_method=PUT" method="POST">
       <div>
@@ -18,5 +11,4 @@
       </div>
       <button>Submit</button>
     </form>
-  </body>
-</html>
+  <a href="/places/<%=place._id%>">Back to Place details</a>

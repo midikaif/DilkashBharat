@@ -14,6 +14,7 @@ const seedDB = async () => {
     const place = await Places.create({
         title: titles[random],
         location: `${cities[random].city}, ${cities[random].state}`,
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut laborum totam accusamus velit praesentium, quaerat, consectetur voluptatum exercitationem facilis sapiente iure ea itaque quasi? Enim ratione quibusdam cupiditate dolores nostrum'
     });
 }
 };

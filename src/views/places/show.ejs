@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= place.title %></title>
-</head>
-<body>
+<% layout('layouts/boilerplate')%>
     <h1><%= place.title %></h1>
     <h2><%= place.location %></h2>
     <p><a href="/places/<%= place._id %>/edit">Edit</a></p>
@@ -13,5 +6,3 @@
         <button>Delete</button>
     </form>
     <p><a href="/places">All places</a></p>
-</body>
-</html>
