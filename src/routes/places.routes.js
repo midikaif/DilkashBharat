@@ -3,19 +3,19 @@ const {showPlaces, singlePlace, newPlaceForm, addNewPlace, editPlace, showEditPl
 
 const router = express.Router();
 
-router.get('/places',showPlaces);
+router.get('/',showPlaces);
 
-router.get("/places/new", newPlaceForm);
+router.get("/new", newPlaceForm);
 
-router.post('/places', addNewPlace);
+router.post('/', addNewPlace);
 
-router.get('/places/:id', singlePlace);
+router.get('/:id', singlePlace);
 
-router.get('/places/:id/edit',showEditPlace)
+router.get('/:id/edit',showEditPlace)
 
-router.put('/places/:id', editPlace);
+router.put('/:id', editPlace);
 
-router.delete('/places/:id',deletePlace);
+router.delete('/:id',deletePlace);
 
 
 module.exports = router;

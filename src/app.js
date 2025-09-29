@@ -18,7 +18,7 @@ app.use(methodOverride('_method'));
 
 
 
-app.use('/',places);
+app.use("/places", places);
 
 
 module.exports = app;
