@@ -2,7 +2,7 @@ const placesModel = require("../models/places.model");
 
 async function showPlaces(req, res) {
   try {
-    const allPlaces = await placesModel.find({});
+    const allPlaces = await placesModel.find({}).limit(10);
     if (!allPlaces) {
       throw new Error("No Places found!");
     }
@@ -25,15 +25,18 @@ async function singlePlace(req, res) {
 }
 
 function newPlaceForm(req, res) {
-  res.render("places/add");
+  res.render("places/add",{errors: null, formData:{}});
 }
 
 async function addNewPlace(req, res) {
   try {
     const place = await placesModel.create(req.body.place);
+    let error;
+
     if (!place) {
-      throw new Error("Something went wrong!");
+      error = new Error("Something went wrong!");
     }
+
     res.redirect(`places/${place._id}`);
   } catch (e) {
     console.log(e);
