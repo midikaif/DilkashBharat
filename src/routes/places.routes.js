@@ -1,5 +1,14 @@
 const express = require('express');
-const {showPlaces, singlePlace, newPlaceForm, addNewPlace, editPlace, showEditPlace, deletePlace} = require('../controllers/places.controller');
+const {
+  showPlaces,
+  singlePlace,
+  newPlaceForm,
+  addNewPlace,
+  editPlace,
+  showEditPlace,
+  deletePlace,
+  addReview,
+} = require("../controllers/places.controller");
 const validate = require('../middlewares/validate');
 const {placesSchema} = require('../validations/places.validation');
 
@@ -19,5 +28,6 @@ router.put('/:id', validate(placesSchema),editPlace);
 
 router.delete('/:id',deletePlace);
 
+router.post('/:id/reviews',addReview)
 
 module.exports = router;

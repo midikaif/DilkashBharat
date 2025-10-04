@@ -74,6 +74,10 @@ async function deletePlace(req, res) {
   res.redirect("/places");
 }
 
+async function addReview(req,res){
+  res.send(req.body);
+}
+
 module.exports = {
   showPlaces,
   singlePlace,
@@ -82,4 +86,5 @@ module.exports = {
   showEditPlace,
   editPlace,
   deletePlace,
+  addReview
 };

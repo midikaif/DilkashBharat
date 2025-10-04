@@ -1,5 +1,4 @@
 module.exports = (schema,viewName) => (req,res,next)=>{
-    console.log(req);
     const {error,value} = schema.validate(req.body);
 
     if(error){
