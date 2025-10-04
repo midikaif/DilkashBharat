@@ -75,7 +75,7 @@ async function deletePlace(req, res) {
 }
 
 async function addReview(req,res){
-  res.send(req.body);
+  res.send('req.body');
 }
 
 module.exports = {

@@ -9,8 +9,10 @@ const {
   deletePlace,
   addReview,
 } = require("../controllers/places.controller");
+
 const validate = require('../middlewares/validate');
 const {placesSchema} = require('../validations/places.validation');
+const reviewSchema = require('../validations/reviews.validation')
 
 const router = express.Router();
 
@@ -24,10 +26,10 @@ router.get('/:id', singlePlace);
 
 router.get('/:id/edit',showEditPlace)
 
-router.put('/:id', validate(placesSchema),editPlace);
+router.put('/:id', validate(placesSchema,'places/edit'),editPlace);
 
 router.delete('/:id',deletePlace);
 
-router.post('/:id/reviews',addReview)
+router.post('/:id/reviews', validate(reviewSchema,'places/show'), addReview);
 
 module.exports = router;
