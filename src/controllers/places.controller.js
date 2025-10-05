@@ -1,4 +1,5 @@
 const placesModel = require("../models/places.model");
+const reviewsModel = require("../models/reviews.model");
 
 async function showPlaces(req, res) {
   try {
@@ -14,7 +15,8 @@ async function showPlaces(req, res) {
 
 async function singlePlace(req, res) {
   try {
-    const place = await placesModel.findById(req.params.id);
+    const place = await placesModel.findById(req.params.id).populate('reviews');
+    console.log(place);
     if (!place) {
       throw new Error("Couldn't find the place!");
     }
@@ -75,7 +77,19 @@ async function deletePlace(req, res) {
 }
 
 async function addReview(req,res){
-  res.send('req.body');
+  const {id} = req.params;
+  const place = await placesModel.findById(id);
+  const review = await reviewsModel.create(req.body.review);
+  console.log(place,review)
+  place.reviews.push(review);
+  place.save();
+  res.redirect(`/places/${id}`);
+}
+
+async function deleteReview(req,res){
+  const {id, reviewId} = req.params;
+  await reviewsModel.findByIdAndDelete(reviewId);
+  res.redirect(`/places/${id}`);
 }
 
 module.exports = {
@@ -86,5 +100,6 @@ module.exports = {
   showEditPlace,
   editPlace,
   deletePlace,
-  addReview
+  addReview,
+  deleteReview
 };

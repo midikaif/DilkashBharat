@@ -8,6 +8,7 @@ const {
   showEditPlace,
   deletePlace,
   addReview,
+  deleteReview
 } = require("../controllers/places.controller");
 
 const validate = require('../middlewares/validate');
@@ -30,6 +31,8 @@ router.put('/:id', validate(placesSchema,'places/edit'),editPlace);
 
 router.delete('/:id',deletePlace);
 
-router.post('/:id/reviews', validate(reviewSchema,'places/show'), addReview);
+router.post('/:id/reviews', addReview);
+
+router.delete('/:id/reviews/:reviewId', deleteReview);
 
 module.exports = router;
