@@ -4,9 +4,11 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const flash = require('connect-flash')
-
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 
 const places = require('./routes/places.routes');
+const userModel = require('./models/user.model');
 
 const app = express();
 
@@ -31,6 +33,12 @@ app.use(session({
     }
 }));
 app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(userModel.authenticate()));
+passport.serializeUser(userModel.serializeUser());
+passport.deserializeUser(userModel.deserializeUser());
 
 
 app.use((req,res,next)=>{
