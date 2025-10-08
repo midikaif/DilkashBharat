@@ -1,0 +1,35 @@
+/* Custom scrollbar for review list */
+.reviews-list::-webkit-scrollbar {
+  width: 8px;
+}
+.reviews-list::-webkit-scrollbar-thumb {
+  background-color: #34d399; /* Emerald-400 */
+  border-radius: 4px;
+}
+.reviews-list::-webkit-scrollbar-track {
+  background-color: #f0fdf4; /* Green-50 */
+}
+
+/* Star rating input style */
+.rating-stars {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: left;
+}
+.rating-stars > input {
+  display: none;
+}
+.rating-stars > label:before {
+  content: "\2605"; /* Solid star character */
+  color: #d1d5db; /* Gray-400 */
+  font-size: 2rem;
+  transition: color 0.2s;
+}
+.rating-stars > input:checked ~ label:before,
+.rating-stars > input:checked ~ label:before {
+  color: #f59e0b; /* Amber-500 */
+}
+.rating-stars > label:hover:before,
+.rating-stars > label:hover ~ label:before {
+  color: #fcd34d; /* Amber-300 */
+}

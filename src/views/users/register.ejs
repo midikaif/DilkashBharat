@@ -1,0 +1,96 @@
+<% layout('layouts/boilerplate') %>
+<div class="bg-gradient-to-br from-emerald-500 to-teal-400 inter-font min-h-screen flex items-center justify-center p-4 -mt-10 sm:p-8 relative overflow-hidden">
+  <!-- --- MOVING GLASS SHAPES (BACKGROUND) --- -->
+  <div class="shape shape-circle-large"></div>
+  <div class="shape shape-square"></div>
+  <div class="shape shape-circle-small"></div>
+  <!-- New third shape -->
+
+  <!-- Registration Card with Glassmorphism (z-index 10 to ensure it's on top) -->
+  <div
+    id="registrationCard"
+    class="animate-slide-in-up w-full max-w-md glass-card p-6 sm:p-8 shadow-xl rounded-xl opacity-0 relative z-10"
+    style="min-width: 300px"
+  >
+    <h2
+      class="text-3xl font-extrabold text-white mb-6 text-center drop-shadow-md"
+    >
+      Create Your Account
+    </h2>
+    <p class="text-gray-200 mb-8 text-center">
+      Join our platform in just a few clicks.
+    </p>
+
+    <form id="registerForm" class="space-y-6">
+      <!-- Username Field -->
+      <div class="input-group">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder=" "
+          required
+          class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50/70 focus:border-emerald-500"
+        />
+        <label for="username">Username</label>
+      </div>
+      <!-- <div class="h-4"></div> -->
+      <!-- Spacer div to restore original spacing -->
+
+      <!-- Email Field -->
+      <div class="input-group">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder=" "
+          required
+          class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50/70 focus:border-emerald-500"
+        />
+        <label for="email">Email Address</label>
+      </div>
+      <!-- <div class="h-4"></div> -->
+      <!-- Spacer div to restore original spacing -->
+
+      <!-- Password Field -->
+      <div class="input-group">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder=" "
+          required
+          class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50/70 focus:border-emerald-500"
+        />
+        <label for="password">Password</label>
+      </div>
+      <!-- <div class="h-4"></div> -->
+      <!-- Spacer div to restore original spacing -->
+
+      <!-- Message Box for Feedback -->
+      <div
+        id="messageBox"
+        class="text-center text-sm p-3 rounded-lg hidden"
+      ></div>
+
+      <!-- Register Button -->
+      <button
+        type="submit"
+        id="registerButton"
+        class="btn-register w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-lg font-semibold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none transition duration-150 ease-in-out"
+      >
+        Register
+      </button>
+    </form>
+
+    <p class="mt-6 text-center text-sm text-gray-200">
+      Already have an account?
+      <a
+        href="#"
+        class="font-medium text-white hover:text-gray-100 transition duration-150"
+      >
+        Sign In
+      </a>
+    </p>
+  </div>
+</div>

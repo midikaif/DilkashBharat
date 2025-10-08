@@ -1,4 +1,163 @@
 <% layout('layouts/boilerplate')%>
+
+<!-- Main Content Area -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <!-- Place Details Section -->
+  <div class="bg-white shadow-2xl rounded-xl overflow-hidden mb-10">
+    <!-- Image Section -->
+    <img
+      id="placeImage"
+      src="https://placehold.co/1200x500/065f46/ffffff?text=Breathtaking+Vista"
+      alt="Place Image"
+      class="w-full h-96 object-cover object-center"
+    />
+
+    <div class="p-6 md:p-10">
+      <!-- Header -->
+      <div
+        class="flex justify-between items-start flex-wrap gap-4 mb-6 border-b pb-4"
+      >
+        <div>
+          <h1
+            id="placeTitle"
+            class="text-4xl font-extrabold text-gray-800 mb-2"
+          >
+            <%= place.title %>
+          </h1>
+          <p
+            id="placeLocation"
+            class="text-xl text-emerald-600 font-medium flex items-center"
+          >
+            <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> <%=
+            place.location %>
+          </p>
+        </div>
+        <div class="text-right">
+          <div
+            id="averageRating"
+            class="text-4xl font-bold text-amber-500 flex items-center"
+          >
+            4.5 <i data-lucide="star" class="w-6 h-6 ml-2 fill-amber-500"></i>
+          </div>
+          <p id="totalReviewsCount" class="text-gray-500 text-sm mt-1">
+            based on 3 reviews
+          </p>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-8">
+        <h3 class="text-2xl font-semibold text-gray-700 mb-3 border-b pb-2">
+          Description
+        </h3>
+        <p id="placeDescription" class="text-gray-600 leading-relaxed">
+          A breathtaking overlook featuring a lush green landscape meeting the
+          deep blue sea. Ideal for sunset viewing and hiking enthusiasts. The
+          trails are well-maintained but steep in sections.
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-4">
+        <a href="/places/<%= place._id %>/edit">
+          <button
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md flex items-center transition"
+          >
+            <i data-lucide="edit" class="w-5 h-5 mr-2"></i> Edit Place
+          </button>
+        </a>
+
+      <form action="/places/<%= place._id %>?_method=DELETE" method="POST">
+        <button
+          class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md flex items-center transition"
+        >
+          <i data-lucide="trash-2" class="w-5 h-5 mr-2"></i> Delete Place
+        </button>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- REVIEWS SECTION --- -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Review Form (Left/Top) -->
+    <div class="lg:col-span-1">
+      <div class="bg-white shadow-2xl rounded-xl p-6 sticky top-20">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">
+          Leave a Review
+        </h3>
+        <form id="reviewForm" class="space-y-4">
+          <!-- Rating Input -->
+          <div>
+            <label class="block text-gray-700 font-medium mb-2"
+              >Your Rating</label
+            >
+            <div class="rating-stars mb-4">
+              <input type="radio" id="star5" name="rating" value="5" required />
+              <label for="star5" title="5 stars"></label>
+              <input type="radio" id="star4" name="rating" value="4" />
+              <label for="star4" title="4 stars"></label>
+              <input type="radio" id="star3" name="rating" value="3" />
+              <label for="star3" title="3 stars"></label>
+              <input type="radio" id="star2" name="rating" value="2" />
+              <label for="star2" title="2 stars"></label>
+              <input type="radio" id="star1" name="rating" value="1" />
+              <label for="star1" title="1 star"></label>
+            </div>
+          </div>
+
+          <!-- Comment Textarea -->
+          <div>
+            <label for="comment" class="block text-gray-700 font-medium mb-2"
+              >Comment</label
+            >
+            <textarea
+              id="comment"
+              name="comment"
+              rows="4"
+              required
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 transition"
+            ></textarea>
+          </div>
+
+          <div id="formMessage" class="text-sm p-2 rounded-lg hidden"></div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg shadow-md transition transform hover:scale-[1.01] active:scale-[0.99]"
+          >
+            Submit Review
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Reviews List (Right/Bottom) -->
+    <div class="lg:col-span-2">
+      <h3 class="text-3xl font-bold text-gray-800 mb-4">User Reviews</h3>
+
+      <!-- Review List Container -->
+      <div
+        id="reviewsContainer"
+        class="space-y-6 reviews-list max-h-[800px] overflow-y-auto pr-2"
+      >
+        <!-- Reviews will be injected here by JavaScript -->
+        <p id="noReviewsMessage" class="text-gray-500 italic">
+          No reviews yet. Be the first to leave one!
+        </p>
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+<!-- 
+========================================
+---------------------------------------
+======================================== 
+-->
+
 <div class="pt-4 flex justify-between gap-3">
   <div class="w-1/2 flex flex-col">
     <div class="mb-20">
@@ -50,19 +209,24 @@
     <div class="mb-3">
       <h3 class="text-2xl mb-3">Reviews</h3>
       <% for(let review of place.reviews){ %>
-      <div class="flex justify-between items-center border-gray-700 p-4 rounded-xl bg-blue-100 my-2">
+      <div
+        class="flex justify-between items-center border-gray-700 p-4 rounded-xl bg-blue-100 my-2"
+      >
         <div class="">
           <p>Rating: <%= review.rating %></p>
           <p class=""><%= review.body %></p>
         </div>
-        <form action="/places/<%= place._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
-        <button
-          type="submit"
-          class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg text-xs px-2.5 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+        <form
+          action="/places/<%= place._id %>/reviews/<%= review._id %>?_method=DELETE"
+          method="post"
         >
-          Delete
-        </button>
-      </form>
+          <button
+            type="submit"
+            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg text-xs px-2.5 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          >
+            Delete
+          </button>
+        </form>
       </div>
 
       <% } %>

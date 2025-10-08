@@ -4,19 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dilkash Bharat</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-</head>
-  <body>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/placesIndex.css" />
+    <link rel="stylesheet" href="/css/singlePlace.css" />
+    <link rel="stylesheet" type="text/css" href="/css/registerForm.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body
+    class="bg-gradient-to-br from-emerald-500 to-teal-400 inter-font min-h-screen pt-12 pb-8 px-4 md:px-8"
+  >
     <%- include('../partials/navbar')%>
     <% if (success && success.length) {%>
       <%- include('../partials/flash')%>
     <% } %>
-    <div class="overflow-hidden px-[12vw] py-3 w-full">
-    <%-body%>
-</div>
-<script src="/js/flash.js"></script>
-</body>
+    <div class="overflow-hidden w-full mt-10"><%-body%></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script src="/js/flash.js"></script>
+    <script type="module" src="/js/registerForm.js"></script>
+      <script type="module" src="/js/singlePlace.js"></script>
+
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelectorAll(".dynamic-card"), {
+        max: 10,
+        speed: 500,
+        glare: true,
+        "max-glare": 1.5,
+      });
+      </script>
+  </body>
 </html>

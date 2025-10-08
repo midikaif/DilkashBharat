@@ -1,0 +1,48 @@
+/* Base Card Style (Used for all cards in the new grid layout) */
+.dynamic-card-grid {
+  height: 400px; /* Fixed height for the vertical card */
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  transform-style: preserve-3d;
+  /* Glassmorphism Aesthetic */
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+/* Hover Effect: Scale up and add shadow */
+.dynamic-card-grid:hover {
+  transform: scale(1.03) translate3d(0, 0, 10px); /* Lift and slight scale */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+/* Image Box: Takes up the top portion */
+.card-img-box-grid {
+  height: 55%;
+  transition: transform 0.4s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+/* Image Hover: subtle pop-out */
+.dynamic-card-grid:hover .card-img-box-grid {
+  transform: translate3d(0, 0, 20px);
+}
+
+/* Content box: Description slides up/reveals */
+.card-content-text-grid {
+  /* Initial state: Slightly hidden to be revealed on hover */
+  opacity: 0;
+  transform: translateY(10px);
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Content Hover: make visible and slide into place */
+.dynamic-card-grid:hover .card-content-text-grid {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 150px; /* Allow description to show */
+}
