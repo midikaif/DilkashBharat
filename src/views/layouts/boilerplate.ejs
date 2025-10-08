@@ -11,8 +11,12 @@
 </head>
   <body>
     <%- include('../partials/navbar')%>
+    <% if (success && success.length) {%>
+      <%- include('../partials/flash')%>
+    <% } %>
     <div class="overflow-hidden px-[12vw] py-3 w-full">
     <%-body%>
 </div>
+<script src="/js/flash.js"></script>
 </body>
 </html>

@@ -16,7 +16,6 @@ async function showPlaces(req, res) {
 async function singlePlace(req, res) {
   try {
     const place = await placesModel.findById(req.params.id).populate('reviews');
-    console.log(place);
     if (!place) {
       throw new Error("Couldn't find the place!");
     }
@@ -33,12 +32,11 @@ function newPlaceForm(req, res) {
 async function addNewPlace(req, res) {
   try {
     const place = await placesModel.create(req.body.place);
-    let error;
-
     if (!place) {
-      error = new Error("Something went wrong!");
+      req.flash('error','Couldn\'t add a new place!');
+      return res.redirect('places');
     }
-
+    req.flash('success','Successfully added a new place!');
     res.redirect(`places/${place._id}`);
   } catch (e) {
     console.log(e);
@@ -49,7 +47,8 @@ async function showEditPlace(req, res) {
   try {
     const place = await placesModel.findById(req.params.id);
     if (!place) {
-      throw new Error("Something went wrong!");
+      req.flash("error", "Can't edit this place!");
+      return res.redirect('places');
     }
     res.render("places/edit", { place });
   } catch (e) {
@@ -63,8 +62,10 @@ async function editPlace(req, res) {
       ...req.body.place,
     });
     if (!updatedPlace) {
-        throw new Error("Couldn't update place!");
+      req.flash('error',"Can't update the place!")
+      return res.redirect('places');
     }
+    req.flash("success", "Successfully edited the place!");
     res.redirect(`/places/${updatedPlace._id}`);
   } catch (e) {
     console.log(e);
@@ -73,6 +74,7 @@ async function editPlace(req, res) {
 
 async function deletePlace(req, res) {
   await placesModel.findByIdAndDelete(req.params.id);
+  req.flash('success', "Successfully deleted the place!")
   res.redirect("/places");
 }
 
@@ -80,15 +82,16 @@ async function addReview(req,res){
   const {id} = req.params;
   const place = await placesModel.findById(id);
   const review = await reviewsModel.create(req.body.review);
-  console.log(place,review)
   place.reviews.push(review);
   place.save();
+  req.flash('success', 'Successfully added the review!')
   res.redirect(`/places/${id}`);
 }
 
 async function deleteReview(req,res){
   const {id, reviewId} = req.params;
   await reviewsModel.findByIdAndDelete(reviewId);
+  req.flash('success','Successfully deleted the review!');
   res.redirect(`/places/${id}`);
 }
 

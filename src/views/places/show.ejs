@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
 <div class="pt-4 flex justify-between gap-3">
-  <div class="w-1/2 flex flex-col h-screen">
+  <div class="w-1/2 flex flex-col">
     <div class="mb-20">
       <h1 class="text-5xl font-bold mb-2"><%= place.title %></h1>
       <h2 class="text-3xl"><%= place.location %></h2>
@@ -61,8 +61,8 @@
           class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg text-xs px-2.5 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
         >
           Delete
-        </div>
         </button>
+      </form>
       </div>
 
       <% } %>

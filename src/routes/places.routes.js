@@ -15,7 +15,7 @@ const validate = require('../middlewares/validate');
 const {placesSchema} = require('../validations/places.validation');
 const reviewSchema = require('../validations/reviews.validation')
 
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 router.get('/',showPlaces);
 
