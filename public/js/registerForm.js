@@ -170,10 +170,10 @@ async function handleRegistration(e) {
 // Initial setup and event listeners
 window.onload = async () => {
   await initializeFirebase();
-  registerForm.addEventListener("submit", handleRegistration);
+//   registerForm.addEventListener("submit", handleRegistration);
 
   // Add dynamic validation listener for instant feedback as the user types
-  [usernameInput, emailInput, passwordInput].forEach((input) => {
-    input.addEventListener("input", () => validateField(input));
-  });
+//   [usernameInput, emailInput, passwordInput].forEach((input) => {
+//     input.addEventListener("input", () => validateField(input));
+//   });
 };

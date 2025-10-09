@@ -1,14 +1,4 @@
 
-const MOCK_PLACE = {
-  id: 1,
-  title: "The Emerald Coast Vista",
-  location: "Kowloon Bay, Hong Kong",
-  description:
-    "A breathtaking overlook featuring a lush green landscape meeting the deep blue sea. Ideal for sunset viewing and hiking enthusiasts. The trails are well-maintained but steep in sections.",
-  imageUrl:
-    "https://placehold.co/1200x500/065f46/ffffff?text=The+Emerald+Coast+Vista",
-};
-
 let MOCK_REVIEWS = [
   {
     id: 101,
@@ -157,7 +147,7 @@ function displayFormMessage(message, type = "error") {
 
 // --- Event Listener ---
 reviewForm.addEventListener("submit", function (event) {
-  event.preventDefault();
+//   event.preventDefault();
 
   // Basic Form Validation (check if rating is selected and comment exists)
   const formData = new FormData(reviewForm);

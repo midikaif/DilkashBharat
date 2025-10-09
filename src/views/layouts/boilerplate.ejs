@@ -19,7 +19,7 @@
     class="bg-gradient-to-br from-emerald-500 to-teal-400 inter-font min-h-screen pt-12 pb-8 px-4 md:px-8"
   >
     <%- include('../partials/navbar')%>
-    <% if (success && success.length) {%>
+    <% if ((success && success.length) || (error && error.length)) {%>
       <%- include('../partials/flash')%>
     <% } %>
     <div class="overflow-hidden w-full mt-10"><%-body%></div>

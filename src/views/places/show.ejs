@@ -67,13 +67,13 @@
           </button>
         </a>
 
-      <form action="/places/<%= place._id %>?_method=DELETE" method="POST">
-        <button
-          class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md flex items-center transition"
-        >
-          <i data-lucide="trash-2" class="w-5 h-5 mr-2"></i> Delete Place
-        </button>
-      </form>
+        <form action="/places/<%= place._id %>?_method=DELETE" method="POST">
+          <button
+            class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md flex items-center transition"
+          >
+            <i data-lucide="trash-2" class="w-5 h-5 mr-2"></i> Delete Place
+          </button>
+        </form>
       </div>
     </div>
   </div>
@@ -86,22 +86,33 @@
         <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">
           Leave a Review
         </h3>
-        <form id="reviewForm" class="space-y-4">
+        <form
+          action="/places/<%=place._id%>/reviews"
+          method="post"
+          id="reviewForm"
+          class="space-y-4"
+        >
           <!-- Rating Input -->
           <div>
             <label class="block text-gray-700 font-medium mb-2"
               >Your Rating</label
             >
             <div class="rating-stars mb-4">
-              <input type="radio" id="star5" name="rating" value="5" required />
+              <input
+                type="radio"
+                id="star5"
+                name="review[rating]"
+                value="5"
+                required
+              />
               <label for="star5" title="5 stars"></label>
-              <input type="radio" id="star4" name="rating" value="4" />
+              <input type="radio" id="star4" name="review[rating]" value="4" />
               <label for="star4" title="4 stars"></label>
-              <input type="radio" id="star3" name="rating" value="3" />
+              <input type="radio" id="star3" name="review[rating]" value="3" />
               <label for="star3" title="3 stars"></label>
-              <input type="radio" id="star2" name="rating" value="2" />
+              <input type="radio" id="star2" name="review[rating]" value="2" />
               <label for="star2" title="2 stars"></label>
-              <input type="radio" id="star1" name="rating" value="1" />
+              <input type="radio" id="star1" name="review[rating]" value="1" />
               <label for="star1" title="1 star"></label>
             </div>
           </div>
@@ -113,7 +124,7 @@
             >
             <textarea
               id="comment"
-              name="comment"
+              name="review[comment]"
               rows="4"
               required
               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 transition"
@@ -142,13 +153,37 @@
         id="reviewsContainer"
         class="space-y-6 reviews-list max-h-[800px] overflow-y-auto pr-2"
       >
+
+      <% for(const review of place.reviews){ %>
+        <div
+          class="bg-gray-50 p-5 rounded-lg border border-gray-200 shadow-sm transition hover:shadow-md"
+        >
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center space-x-3">
+              <div
+                class="bg-emerald-100 p-2 rounded-full text-emerald-600 font-bold w-10 h-10 flex items-center justify-center"
+              >
+              U
+              </div>
+              <div>
+                <p class="font-semibold text-gray-800">User <%= review.username %></p>
+                <p class="text-sm text-gray-500">Jan 01, 2025</p>
+              </div>
+            </div>
+            <!-- Star Rating -->
+            ${renderRatingStars(<%= review.rating %>)}
+          </div>
+          <p class="text-gray-700 leading-relaxed italic border-t pt-3 mt-3">
+            "<%= review.comment %>"
+          </p>
+        </div>
+<% } %>
         <!-- Reviews will be injected here by JavaScript -->
         <p id="noReviewsMessage" class="text-gray-500 italic">
           No reviews yet. Be the first to leave one!
         </p>
       </div>
     </div>
-  
   </div>
 </div>
 
@@ -157,7 +192,7 @@
 ---------------------------------------
 ======================================== 
 -->
-
+<!-- 
 <div class="pt-4 flex justify-between gap-3">
   <div class="w-1/2 flex flex-col">
     <div class="mb-20">
@@ -231,5 +266,6 @@
 
       <% } %>
     </div>
+
   </div>
-</div>
+</div> -->
