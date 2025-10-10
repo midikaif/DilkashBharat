@@ -8,7 +8,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
 const placesRoutes = require("./routes/places.routes");
-const authRoutes = require('./routes/auth.routes');
+const authRoutes = require("./routes/auth.routes");
 const userModel = require("./models/user.model");
 
 const app = express();
@@ -44,13 +44,13 @@ passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
 
 app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
+  res.locals.currentUser = req.user;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
 });
 
-app.use('/auth',authRoutes);
+app.use("/auth", authRoutes);
 app.use("/places", placesRoutes);
 
 module.exports = app;

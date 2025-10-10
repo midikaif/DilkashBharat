@@ -1,6 +1,7 @@
 const express= require('express');
 const userModel = require('../models/user.model');
 const {registerForm,loginForm, register, login} = require('../controllers/auth.controller');
+const {storeReturnTo} = require('../middlewares/auth.middleware');
 const passport = require('passport');
 const router = express.Router();
 
@@ -11,7 +12,7 @@ router.post('/register',register);
 
 router.get('/login',loginForm);
 
-router.post('/login',passport.authenticate('local',{failureRedirect:'/auth/login', failureFlash:true}),login)
+router.post('/login',storeReturnTo,passport.authenticate('local',{failureRedirect:'/auth/login', failureFlash:true}),login)
 
 router.get('/logout',(req,res,next)=>{
     req.logout(function (err){

@@ -26,9 +26,9 @@ function loginForm(req,res){
 }
 
 function login(req,res){
-    console.log('yaay')
     req.flash('success','Welcome back!');
-    res.redirect('/places');
+    const redirectUrl = res.locals.returnTo || '/places';
+    res.redirect(redirectUrl);
 }
 
 
