@@ -11,15 +11,16 @@ const {
   deleteReview
 } = require("../controllers/places.controller");
 
-const validate = require('../middlewares/validate');
+const validate = require('../middlewares/validate.middleware');
 const {placesSchema} = require('../validations/places.validation');
-const reviewSchema = require('../validations/reviews.validation')
+const reviewSchema = require('../validations/reviews.validation');
+const {isLoggedIn} = require('../middlewares/auth.middleware');
 
 const router = express.Router({mergeParams: true});
 
 router.get('/',showPlaces);
 
-router.get("/new", newPlaceForm);
+router.get("/new",isLoggedIn, newPlaceForm);
 
 router.post("/", validate(placesSchema, "places/add"), addNewPlace);
 

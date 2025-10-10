@@ -18,16 +18,18 @@
   <body
     class="bg-gradient-to-br from-emerald-500 to-teal-400 inter-font min-h-screen pt-12 pb-8 px-4 md:px-8"
   >
-    <%- include('../partials/navbar')%>
-    <% if ((success && success.length) || (error && error.length)) {%>
-      <%- include('../partials/flash')%>
+    <%- include('../partials/navbar')%> 
+    
+    <% if ((success && success.length) || (error && error.length)) {%> 
+      <%- include('../partials/flash')%> 
     <% } %>
+    
     <div class="overflow-hidden w-full mt-10"><%-body%></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="/js/flash.js"></script>
     <script type="module" src="/js/registerForm.js"></script>
-      <script type="module" src="/js/singlePlace.js"></script>
+    <script type="module" src="/js/singlePlace.js"></script>
 
     <script type="text/javascript">
       VanillaTilt.init(document.querySelectorAll(".dynamic-card"), {
@@ -36,6 +38,6 @@
         glare: true,
         "max-glare": 1.5,
       });
-      </script>
+    </script>
   </body>
 </html>

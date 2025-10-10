@@ -8,11 +8,13 @@ function registerForm(req,res){
 async function register(req,res){
     try{
         const {email, username, password} = req.body;
-        console.log(req.body);
         const user = new userModel({email,username});
         const registeredUser = await userModel.register(user,password);
-        req.flash('success','Welcome to Dilkash!');
-        res.redirect('/places');
+        res.login(registeredUser, err => {
+            if(err) return next(err);
+            req.flash('success','Welcome to Dilkash!');
+            res.redirect('/places');
+        })
     }catch(e){
         req.flash('error',e.message);
         res.redirect('register');

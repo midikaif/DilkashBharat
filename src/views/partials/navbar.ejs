@@ -29,6 +29,7 @@
 
       <!-- Auth Links and Search Group (Right Side) -->
       <div class="hidden md:flex items-center space-x-6">
+        <% if(!currentUser){ %>
         <a
           href="/auth/register"
           class="text-emerald-300 font-bold hover:text-white transition duration-150 border border-emerald-300 px-3 py-1 rounded-lg"
@@ -39,7 +40,13 @@
           class="text-white hover:text-emerald-200 transition duration-150 font-medium"
           >Login</a
         >
-
+<% } else{ %>
+        <a
+          href="/auth/logout"
+          class="text-white hover:text-emerald-200 transition duration-150 font-medium"
+          >Logout</a
+        >
+<% } %>
         <!-- Search Input/Icon -->
         <div class="relative">
           <input

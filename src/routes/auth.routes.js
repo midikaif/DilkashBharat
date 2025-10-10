@@ -11,12 +11,17 @@ router.post('/register',register);
 
 router.get('/login',loginForm);
 
-const middle=(req,res,next)=>{
-        console.log(req.body);
-        console.log("hello");
-    next();
-}
+router.post('/login',passport.authenticate('local',{failureRedirect:'/auth/login', failureFlash:true}),login)
 
-router.post('/login',middle,passport.authenticate('local',{failureRedirect:'/auth/login', failureFlash:true}),login)
+router.get('/logout',(req,res,next)=>{
+    req.logout(function (err){
+        if(err){
+            return next(err);
+        }
+        req.flash('success','Goodbye!');
+        res.redirect('/places');
+    })
+})
+
 
 module.exports = router;
