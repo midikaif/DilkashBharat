@@ -37,17 +37,36 @@ body {
 /* Flash message */
 
 .alert-container {
-  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-  transform: translateY(-100%);
+  transition: transform 0.3s ease-out, opacity 0.5s ease-out;
+  transform: translateY(-100%) translateX(-50%);
   opacity: 0;
   pointer-events: none;
 }
 /* The 'show' class makes the alert visible and starts the timer */
 .alert-container.show {
-  transform: translateY(0);
+  transform: translateY(0) translateX(-50%);
   opacity: 1;
   pointer-events: auto;
 }
 .inter-font {
   font-family: "Inter", sans-serif;
+}
+
+
+/* Custom Glassmorphism Base Class */
+.glass-alert-base {
+    /* 1. Blur Effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+
+    /* 2. Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0.15); 
+    
+    /* 3. Subtle Border (optional but enhances the look) */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Ensure the text and icons pop */
+.glass-alert-text {
+    color: #f7f7f7; /* Light text for readability */
 }
