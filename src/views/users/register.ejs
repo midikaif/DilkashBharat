@@ -1,12 +1,9 @@
 <% layout('layouts/boilerplate') %>
 <div class="bg-gradient-to-br from-emerald-500 to-teal-400 inter-font min-h-screen flex items-center justify-center p-4 -mt-10 sm:p-8 relative overflow-hidden">
-  <!-- --- MOVING GLASS SHAPES (BACKGROUND) --- -->
   <div class="shape shape-circle-large"></div>
   <div class="shape shape-square"></div>
   <div class="shape shape-circle-small"></div>
-  <!-- New third shape -->
 
-  <!-- Registration Card with Glassmorphism (z-index 10 to ensure it's on top) -->
   <div
     id="registrationCard"
     class="animate-slide-in-up w-full max-w-md glass-card p-6 sm:p-8 shadow-xl rounded-xl opacity-0 relative z-10"
@@ -22,7 +19,33 @@
     </p>
 
     <form action="/auth/register" method="post" id="registerForm" class="space-y-6">
-      <!-- Username Field -->
+      
+      <div class="flex space-x-4">
+        
+        <div class="input-group flex-1">
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder=" "
+            required
+            class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50/70 focus:border-emerald-500"
+          />
+          <label for="firstName">First Name</label>
+        </div>
+
+        <div class="input-group flex-1">
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder=" "
+            required
+            class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50/70 focus:border-emerald-500"
+          />
+          <label for="lastName">Last Name</label>
+        </div>
+      </div>
       <div class="input-group">
         <input
           type="text"
@@ -34,10 +57,7 @@
         />
         <label for="username">Username</label>
       </div>
-      <!-- <div class="h-4"></div> -->
-      <!-- Spacer div to restore original spacing -->
-
-      <!-- Email Field -->
+      
       <div class="input-group">
         <input
           type="email"
@@ -49,10 +69,7 @@
         />
         <label for="email">Email Address</label>
       </div>
-      <!-- <div class="h-4"></div> -->
-      <!-- Spacer div to restore original spacing -->
-
-      <!-- Password Field -->
+      
       <div class="input-group">
         <input
           type="password"
@@ -64,16 +81,12 @@
         />
         <label for="password">Password</label>
       </div>
-      <!-- <div class="h-4"></div> -->
-      <!-- Spacer div to restore original spacing -->
-
-      <!-- Message Box for Feedback -->
+      
       <div
         id="messageBox"
         class="text-center text-sm p-3 rounded-lg hidden"
       ></div>
 
-      <!-- Register Button -->
       <button
         type="submit"
         id="registerButton"

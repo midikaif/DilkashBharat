@@ -15,7 +15,8 @@ async function showPlaces(req, res) {
 
 async function singlePlace(req, res) {
   try {
-    const place = await placesModel.findById(req.params.id).populate('reviews');
+    const place = await placesModel.findById(req.params.id).populate('reviews').populate('author');
+    console.log(place);
     if (!place) {
       throw new Error("Couldn't find the place!");
     }
@@ -26,6 +27,7 @@ async function singlePlace(req, res) {
 }
 
 function newPlaceForm(req, res) {
+  
   res.render("places/add",{errors: null, formData:{}});
 }
 

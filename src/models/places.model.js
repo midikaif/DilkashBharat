@@ -7,6 +7,10 @@ const Places = new mongoose.Schema(
     title: String,
     location: String,
     description: String,
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
     reviews: [
       {
         type: mongoose.Schema.Types.ObjectId,

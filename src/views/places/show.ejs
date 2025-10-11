@@ -5,12 +5,20 @@
   <!-- Place Details Section -->
   <div class="bg-white shadow-2xl rounded-xl overflow-hidden mb-10">
     <!-- Image Section -->
-    <img
-      id="placeImage"
-      src="https://placehold.co/1200x500/065f46/ffffff?text=Breathtaking+Vista"
-      alt="Place Image"
-      class="w-full h-96 object-cover object-center"
-    />
+    <div class="relative w-full">
+      <img
+        id="placeImage"
+        src="https://placehold.co/1200x500/065f46/ffffff?text=Breathtaking+Vista"
+        alt="Place Image"
+        class="w-full h-96 object-cover object-center rounded-t-xl"
+      />
+      <div
+        class="absolute top-4 left-4 bg-white/80 backdrop-blur-sm text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full flex items-center shadow-md border border-white/90"
+      >
+        <i data-lucide="award" class="w-3 h-3 mr-1 text-emerald-600"></i>
+        <span>Submitted by: <%= place.author.username %></span>
+      </div>
+    </div>
 
     <div class="p-6 md:p-10">
       <!-- Header -->
@@ -58,6 +66,7 @@
       </div>
 
       <!-- Action Buttons -->
+      <% if(currentUser && place.author.equals(currentUser._id)) {%>
       <div class="flex space-x-4">
         <a href="/places/<%= place._id %>/edit">
           <button
@@ -75,6 +84,7 @@
           </button>
         </form>
       </div>
+      <% } %>
     </div>
   </div>
 
@@ -153,8 +163,7 @@
         id="reviewsContainer"
         class="space-y-6 reviews-list max-h-[800px] overflow-y-auto pr-2"
       >
-
-      <% for(const review of place.reviews){ %>
+        <% for(const review of place.reviews){ %>
         <div
           class="bg-gray-50 p-5 rounded-lg border border-gray-200 shadow-sm transition hover:shadow-md"
         >
@@ -163,10 +172,12 @@
               <div
                 class="bg-emerald-100 p-2 rounded-full text-emerald-600 font-bold w-10 h-10 flex items-center justify-center"
               >
-              U
+                U
               </div>
               <div>
-                <p class="font-semibold text-gray-800">User <%= review.username %></p>
+                <p class="font-semibold text-gray-800">
+                  User <%= review.username %>
+                </p>
                 <p class="text-sm text-gray-500">Jan 01, 2025</p>
               </div>
             </div>
@@ -177,7 +188,7 @@
             "<%= review.comment %>"
           </p>
         </div>
-<% } %>
+        <% } %>
         <!-- Reviews will be injected here by JavaScript -->
         <p id="noReviewsMessage" class="text-gray-500 italic">
           No reviews yet. Be the first to leave one!
