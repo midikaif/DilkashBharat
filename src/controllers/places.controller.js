@@ -17,7 +17,12 @@ async function singlePlace(req, res) {
   try {
     const place = await placesModel
       .findById(req.params.id)
-      .populate("reviews")
+      .populate({
+        path: "reviews",
+        populate: {
+          path: "author",
+        },
+      })
       .populate("author");
     if (!place) {
       throw new Error("Couldn't find the place!");
@@ -57,12 +62,6 @@ async function showEditPlace(req, res) {
       req.flash("error", "Can't find this place!");
       return res.redirect("places");
     }
-
-    if (!place.author.equals(req.user._id)) {
-      req.flash("error", "You do not have permission to do that!");
-      return res.redirect(`/places/${id}`);
-    }
-
     res.render("places/edit", { place });
   } catch (e) {
     console.log(e);
@@ -72,13 +71,6 @@ async function showEditPlace(req, res) {
 async function editPlace(req, res) {
   try {
     const { id } = req.params;
-    const place = await placesModel.findById(id);
-
-    if (!place.author.equals(req.user._id)) {
-      req.flash("error", "You do not have permission to do that!");
-      return res.redirect(`/places/${id}`);
-    }
-
     const updatedPlace = await placesModel.findByIdAndUpdate(id, {
       ...req.body.place,
     });
@@ -94,40 +86,9 @@ async function editPlace(req, res) {
 }
 
 async function deletePlace(req, res) {
-  const { id } = req.params;
-  const place = await placesModel.findById(id);
-
-  if (!place.author.equals(req.user._id)) {
-    req.flash("error", "You do not have permission to do that!");
-    return res.redirect(`/places/${id}`);
-  }
-
   await placesModel.findByIdAndDelete(id);
   req.flash("success", "Successfully deleted the place!");
   res.redirect("/places");
-}
-
-async function addReview(req, res) {
-  const { id } = req.params;
-  const place = await placesModel.findById(id);
-
-  if (!place.author.equals(req.user._id)) {
-    req.flash("error", "You do not have permission to do that!");
-    return res.redirect(`/places/${id}`);
-  }
-  
-  const review = await reviewsModel.create(req.body.review);
-  place.reviews.push(review);
-  place.save();
-  req.flash("success", "Successfully added the review!");
-  res.redirect(`/places/${id}`);
-}
-
-async function deleteReview(req, res) {
-  const { id, reviewId } = req.params;
-  await reviewsModel.findByIdAndDelete(reviewId);
-  req.flash("success", "Successfully deleted the review!");
-  res.redirect(`/places/${id}`);
 }
 
 module.exports = {
@@ -138,6 +99,4 @@ module.exports = {
   showEditPlace,
   editPlace,
   deletePlace,
-  addReview,
-  deleteReview,
 };

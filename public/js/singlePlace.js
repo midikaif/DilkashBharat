@@ -111,7 +111,7 @@ function renderReviews() {
     reviewsContainer.innerHTML = `<p id="noReviewsMessage" class="text-gray-500 italic">No reviews yet. Be the first to leave one!</p>`;
     return;
   }
-
+  
   // Sort by date (newest first)
   MOCK_REVIEWS.sort((a, b) => new Date(b.date) - new Date(a.date));
 

@@ -89,7 +89,7 @@
   </div>
 
   <!-- --- REVIEWS SECTION --- -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <div id="reviews" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Review Form (Left/Top) -->
      
     <div class="lg:col-span-1">
@@ -135,7 +135,7 @@
             >
             <textarea
               id="comment"
-              name="review[comment]"
+              name="review[body]"
               rows="4"
               required
               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 transition"
@@ -153,6 +153,7 @@
           </button>
         </form>
       </div>
+    
     </div>
 
     <!-- Reviews List (Right/Bottom) -->

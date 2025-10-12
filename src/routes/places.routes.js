@@ -7,14 +7,14 @@ const {
   editPlace,
   showEditPlace,
   deletePlace,
-  addReview,
-  deleteReview
 } = require("../controllers/places.controller");
+
+const {addReview,deleteReview, redirectToReviews} = require('../controllers/reviews.controller');
 
 const validate = require('../middlewares/validate.middleware');
 const {placesSchema} = require('../validations/places.validation');
 const reviewSchema = require('../validations/reviews.validation');
-const {isLoggedIn} = require('../middlewares/auth.middleware');
+const {isLoggedIn, isAuthor, isReviewAuthor} = require('../middlewares/auth.middleware');
 
 const router = express.Router({mergeParams: true});
 
@@ -26,14 +26,16 @@ router.post("/",isLoggedIn, validate(placesSchema, "places/add"), addNewPlace);
 
 router.get('/:id', singlePlace);
 
-router.get('/:id/edit', isLoggedIn, showEditPlace)
+router.get('/:id/edit', isLoggedIn, isAuthor, showEditPlace);
 
-router.put('/:id', isLoggedIn, validate(placesSchema,'places/edit'), editPlace);
+router.put('/:id', isLoggedIn, isAuthor, validate(placesSchema,'places/edit'), editPlace);
 
-router.delete('/:id',isLoggedIn, deletePlace);
+router.delete('/:id',isLoggedIn, isAuthor, deletePlace);
+
+router.get('/:id/reviews', redirectToReviews);
 
 router.post('/:id/reviews',isLoggedIn, addReview);
 
-router.delete('/:id/reviews/:reviewId', isLoggedIn, deleteReview);
+router.delete('/:id/reviews/:reviewId', isLoggedIn, isReviewAuthor, deleteReview);
 
 module.exports = router;
