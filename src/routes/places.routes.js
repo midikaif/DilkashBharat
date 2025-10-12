@@ -18,24 +18,26 @@ const {isLoggedIn, isAuthor, isReviewAuthor} = require('../middlewares/auth.midd
 
 const router = express.Router({mergeParams: true});
 
-router.get('/',showPlaces);
+router.route('/')
+  .get(showPlaces)
+  .post(isLoggedIn, validate(placesSchema, "places/add"), addNewPlace);
 
-router.get("/new",isLoggedIn, newPlaceForm);
 
-router.post("/",isLoggedIn, validate(placesSchema, "places/add"), addNewPlace);
+  router.get("/new", isLoggedIn, newPlaceForm);
 
-router.get('/:id', singlePlace);
+router.route('/:id')
+  .get(singlePlace)
+  .put(isLoggedIn, isAuthor, validate(placesSchema,'places/edit'), editPlace)
+  .delete(isLoggedIn, isAuthor, deletePlace);
 
+  
 router.get('/:id/edit', isLoggedIn, isAuthor, showEditPlace);
 
-router.put('/:id', isLoggedIn, isAuthor, validate(placesSchema,'places/edit'), editPlace);
-
-router.delete('/:id',isLoggedIn, isAuthor, deletePlace);
-
-router.get('/:id/reviews', redirectToReviews);
-
-router.post('/:id/reviews',isLoggedIn, addReview);
+router.route("/:id/reviews")
+.get(redirectToReviews)
+.post(isLoggedIn, addReview);
 
 router.delete('/:id/reviews/:reviewId', isLoggedIn, isReviewAuthor, deleteReview);
+
 
 module.exports = router;
