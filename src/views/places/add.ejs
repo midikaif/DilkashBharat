@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
 <h1 class="text-7xl mb-4">Add new place</h1>
-<form action="/places" method="POST">
+<form action="/places" method="POST" enctype="multipart/form-data">
   <div class="mb-4">
     <label for="title" class="block mb-2 text-lg font-medium text-gray-900"
       >Title:
@@ -13,6 +13,10 @@
       required
     />
   </div>
+<div class="mb-4">
+  <input type="file" name="image" id="image" multiple>
+</div>
+
   <div class="mb-4">
     <label for="location" class="block mb-2 text-lg font-medium text-gray-900"
       >Location:
