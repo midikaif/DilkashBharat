@@ -6,6 +6,12 @@ const Places = new mongoose.Schema(
   {
     title: String,
     location: String,
+    images: [
+      {
+        url: String,
+        fileName: String,
+      }
+    ],
     description: String,
     author: {
       type: mongoose.Schema.Types.ObjectId,

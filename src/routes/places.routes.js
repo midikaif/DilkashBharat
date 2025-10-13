@@ -33,12 +33,8 @@ const router = express.Router({ mergeParams: true });
 router
   .route("/")
   .get(showPlaces)
-  // .post(isLoggedIn, validate(placesSchema, "places/add"), addNewPlace);
-  .post(upload.array('image'),(req,res)=>{
-    console.log(req.body, req.files);
-    res.send('it worked');
-  })
-
+  .post(isLoggedIn, validate(placesSchema, "places/add"), upload.array('image'), addNewPlace);
+ 
 router.get("/new", isLoggedIn, newPlaceForm);
 
 router

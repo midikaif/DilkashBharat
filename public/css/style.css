@@ -52,21 +52,45 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-
 /* Custom Glassmorphism Base Class */
 .glass-alert-base {
-    /* 1. Blur Effect */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+  /* 1. Blur Effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
 
-    /* 2. Semi-transparent background */
-    background-color: rgba(255, 255, 255, 0.15); 
-    
-    /* 3. Subtle Border (optional but enhances the look) */
-    border: 1px solid rgba(255, 255, 255, 0.3);
+  /* 2. Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.15);
+
+  /* 3. Subtle Border (optional but enhances the look) */
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Ensure the text and icons pop */
 .glass-alert-text {
-    color: #f7f7f7; /* Light text for readability */
+  color: #f7f7f7; /* Light text for readability */
+}
+
+/* ====== Add new Place ========= */
+
+.glassmorphic-card {
+  background: rgba(255, 255, 255, 0.15); /* Translucent white background */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Shadow */
+  backdrop-filter: blur(10px); /* The key to the effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+  border-radius: 10px; /* Rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Light border */
+}
+
+/* Ensuring inputs have a slightly transparent background to blend */
+.glass-input {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Slightly more opaque for readability */
+}
+
+.body-bg {
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }

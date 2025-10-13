@@ -1,49 +1,138 @@
 <% layout('layouts/boilerplate')%>
-<h1 class="text-7xl mb-4">Add new place</h1>
-<form action="/places" method="POST" enctype="multipart/form-data">
-  <div class="mb-4">
-    <label for="title" class="block mb-2 text-lg font-medium text-gray-900"
-      >Title:
-    </label>
-    <input
-      type="text"
-      name="place[title]"
-      class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[50vw] p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      value="<%= formData?.place?.title || ''%>"
-      required
-    />
+
+<div
+  class="min-h-screen flex justify-center items-center p-0 top-0 relative overflow-hidden"
+>
+  <div class="shape shape-circle-large"></div>
+  <div class="shape shape-square"></div>
+  <div class="shape shape-circle-small"></div>
+
+  <!-- Card now uses the glass-card class -->
+  <div class="card glass-card rounded-xl p-8 w-full max-w-3xl">
+    <h1
+      class="text-3xl font-extrabold text-gray-100 text-center mb-10 tracking-wide"
+    >
+      Add New Place
+    </h1>
+
+    <form
+      id="addPlaceForm"
+      action="/places"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <!-- Horizontal Layout using Tailwind Grid (Responsive: 1 col mobile, 2 cols desktop) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Title Input -->
+        <div class="form-group" id="group-title">
+          <label
+            for="title"
+            class="block text-sm font-medium text-gray-800 mb-1"
+            >Title</label
+          >
+          <input
+            type="text"
+            id="title"
+            name="place[title]"
+            class="glass-input w-full p-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            required
+            minlength="3"
+            placeholder="e.g., Hidden Haunted Place"
+            value="<%= formData?.place?.title || ''%>"
+          />
+          <div class="error-message text-red-600 text-xs mt-1" id="error-title">
+            Title is required (min 3 characters).
+          </div>
+        </div>
+
+        <!-- Location Input -->
+        <div class="form-group" id="group-location">
+          <label
+            for="location"
+            class="block text-sm font-medium text-gray-800 mb-1"
+            >Geographic Location</label
+          >
+          <input
+            type="text"
+            id="location"
+            name="place[location]"
+            class="glass-input w-full p-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            required
+            minlength="3"
+            placeholder="e.g., Goa, India"
+            value="<%= formData?.place?.location || ''%>"
+          />
+          <div
+            class="error-message text-red-600 text-xs mt-1"
+            id="error-location"
+          >
+            Location is required (min 3 characters).
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Textarea (Full Width) -->
+      <div class="form-group mb-6 col-span-full" id="group-description">
+        <label
+          for="description"
+          class="block text-sm font-medium text-gray-800 mb-1"
+          >Detailed Description</label
+        >
+        <textarea
+          id="description"
+          name="place[description]"
+          rows="4"
+          class="glass-input w-full p-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 resize-y focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          required
+          minlength="10"
+          placeholder="Provide a detailed summary of the place's significance..."
+        >
+        <%= formData?.place?.description || ''%>
+      </textarea>
+        
+        <div
+          class="error-message text-red-600 text-xs mt-1"
+          id="error-description"
+        >
+          Description is required (min 10 characters).
+        </div>
+      </div>
+
+      <!-- Image Upload (Full Width) -->
+      <div class="form-group mb-8 col-span-full" id="group-image">
+        <label for="image" class="block text-sm font-medium text-gray-800 mb-1"
+          >Upload Assets (upto 3 images)</label
+        >
+        <!-- File input styling is browser-dependent, keeping simple for Tailwind theme -->
+        <div class="file-input-wrapper">
+          <input
+            type="file"
+            name="image"
+            id="image"
+            multiple
+            required
+            class="text-gray-800 block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border file:border-gray-300 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition duration-150"
+          />
+        </div>
+        <div class="error-message text-red-600 text-xs mt-1" id="error-image">
+          Please select at least one file.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="submit-btn w-full md:w-72 mt-2 py-3 px-6 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition duration-150 ease-in-out uppercase tracking-wider mx-auto block focus:outline-none focus:ring-4 focus:ring-blue-300"
+      >
+        Submit
+      </button>
+    </form>
+
+    <a
+      href="/places"
+      class="back-link block text-center text-sm text-gray-600 hover:text-blue-600 mt-6 transition duration-150"
+    >
+      ← Return to Places List
+    </a>
   </div>
-<div class="mb-4">
-  <input type="file" name="image" id="image" multiple>
 </div>
-
-  <div class="mb-4">
-    <label for="location" class="block mb-2 text-lg font-medium text-gray-900"
-      >Location:
-    </label>
-    <input
-      type="text"
-      name="place[location]"
-      class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[50vw] p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      value="<%= formData?.place?.location || ''%>"
-      required
-    />
-  </div>
-  <button
-    type="submit"
-    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-  >
-    Submit
-  </button>
-</form>
-<a href="/places" class="text-sky-700 underline">Back to places</a>
-
-<% if (errors) {%>
-<div class="notification">
- <ul>   
-   <% errors.forEach(error => { %>
-    <li><%= error %></li>
-    <% }) %>
-  </div>
-</ul>
-<%}%>
