@@ -3,7 +3,7 @@ const reviewsModel = require("../models/reviews.model");
 
 async function showPlaces(req, res) {
   try {
-    const allPlaces = await placesModel.find({}).limit(10);
+    const allPlaces = await placesModel.find({});
     if (!allPlaces) {
       throw new Error("No Places found!");
     }
