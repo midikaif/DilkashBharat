@@ -33,7 +33,7 @@ const router = express.Router({ mergeParams: true });
 router
   .route("/")
   .get(showPlaces)
-  .post(isLoggedIn, validate(placesSchema, "places/add"), upload.array('image'), addNewPlace);
+  .post(isLoggedIn, validate(placesSchema, "places/add"), upload.array('image',3), addNewPlace);
  
 router.get("/new", isLoggedIn, newPlaceForm);
 

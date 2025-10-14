@@ -6,9 +6,10 @@
   <div class="bg-white shadow-2xl rounded-xl overflow-hidden mb-10">
     <!-- Image Section -->
     <div class="relative w-full">
+      
       <img
         id="placeImage"
-        src="https://placehold.co/1200x500/065f46/ffffff?text=Breathtaking+Vista"
+        src="<%= place?.images[0]?.url  || 'https://placehold.co/1200x500/065f46/ffffff?text=Breathtaking+Vista' %>"
         alt="Place Image"
         class="w-full h-96 object-cover object-center rounded-t-xl"
       />
@@ -69,7 +70,7 @@
             <i data-lucide="star" class="w-6 h-6 ml-1 <%= color %>"></i>
             <% } %> 
             <% } else { %> 
-              N/A 
+              0.0 
               <% for(let i = 1; i <= 5; i++) { %>
               <i data-lucide="star" class="w-6 h-6 ml-1 text-gray-300"></i>
               <% } %> 
@@ -135,7 +136,7 @@
           <div>
             <label class="block text-gray-700 font-medium mb-2"
               >Your Rating</label>
-              
+
             <div class="rating-stars mb-4">
               <input type="radio" id="star5" name="review[rating]" value="5" />
               <label for="star5" title="5 stars"></label>
