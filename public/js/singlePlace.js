@@ -1,3 +1,76 @@
+let slideIndex = 1;
+let slideTimer;
+const intervalTime = 4000;
+const mainImagesContainer = document.querySelector(".carousel-main-images");
+const prevNextButtons = document.querySelectorAll(".carousel-btn");
+const thumbnailContainer = document.querySelector(".carousel-thumbnails");
+
+startSlideshow();
+
+
+/* --- JS UTILITY FUNCTIONS --- */
+
+function resetTimer() {
+  clearInterval(slideTimer);
+  startSlideshow();
+}
+
+function startSlideshow() {
+  showSlides(slideIndex);
+  slideTimer = setInterval(() => {
+    showSlides((slideIndex += 1));
+  }, intervalTime);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("carousel-image");
+  let thumbs = document.getElementsByClassName("thumbnail-item");
+
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+
+  for (i = 0; i < slides.length; i++) {
+    slides[i].classList.remove("active");
+    thumbs[i].classList.remove("active");
+  }
+
+  slides[slideIndex - 1].classList.add("active");
+  thumbs[slideIndex - 1].classList.add("active");
+}
+
+/* ------------------------------------------------------------------ */
+/* NEW: EVENT LISTENERS FOR EJS COMPATIBILITY               */
+/* ------------------------------------------------------------------ */
+
+// 1. Prev/Next Button Listeners
+prevNextButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    // Get the direction from the data-change attribute
+    const change = parseInt(this.getAttribute("data-change"));
+
+    showSlides((slideIndex += change));
+    resetTimer();
+  });
+});
+
+// 2. Thumbnail Click Listener (using Event Delegation on the container)
+thumbnailContainer.addEventListener("click", function (event) {
+  // Check if the clicked element is a thumbnail-item
+  if (event.target.classList.contains("thumbnail-item")) {
+    // Get the index from the data-index attribute
+    const index = parseInt(event.target.getAttribute("data-index"));
+
+    showSlides((slideIndex = index));
+    resetTimer();
+  }
+});
+
+
 
 // --- 1. Utility Function: Renders Star Icons ---
 function renderRatingStars(rating) {
@@ -89,5 +162,3 @@ document.addEventListener("DOMContentLoaded", () => {
 // If not using modules, the functions are global and callable.
 
 // Function to handle showing the custom delete modal
-
-

@@ -33,14 +33,19 @@ const router = express.Router({ mergeParams: true });
 router
   .route("/")
   .get(showPlaces)
-  .post(isLoggedIn, validate(placesSchema, "places/add"), upload.array('image',3), addNewPlace);
- 
+  .post(
+    isLoggedIn,
+    validate(placesSchema, "places/add"),
+    upload.array("image", 3),
+    addNewPlace
+  );
+
 router.get("/new", isLoggedIn, newPlaceForm);
 
 router
   .route("/:id")
   .get(singlePlace)
-  .put(isLoggedIn, isAuthor, validate(placesSchema, "places/edit"), editPlace)
+  .put(isLoggedIn, isAuthor, upload.array("image", 3), editPlace)
   .delete(isLoggedIn, isAuthor, deletePlace);
 
 router.get("/:id/edit", isLoggedIn, isAuthor, showEditPlace);

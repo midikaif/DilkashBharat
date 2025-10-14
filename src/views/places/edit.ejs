@@ -1,6 +1,5 @@
 <% layout('layouts/boilerplate')%>
 
-
 <div
   class="min-h-screen flex justify-center items-center p-0 top-0 relative overflow-hidden"
 >
@@ -22,8 +21,12 @@
       method="POST"
       enctype="multipart/form-data"
     > -->
-    <form id="addPlaceForm" action="/places/<%=place._id%>?_method=PUT" method="POST">
-
+    <form
+      id="addPlaceForm"
+      action="/places/<%=place._id%>?_method=PUT"
+      method="POST"
+      enctype="multipart/form-data"
+    >
       <!-- Horizontal Layout using Tailwind Grid (Responsive: 1 col mobile, 2 cols desktop) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <!-- Title Input -->
@@ -89,9 +92,11 @@
           required
           minlength="10"
           placeholder="Provide a detailed summary of the place's significance..."
-        > <%= place.description %>
-      </textarea>
-        
+        >
+ <%= place.description %>
+      </textarea
+        >
+
         <div
           class="error-message text-red-600 text-xs mt-1"
           id="error-description"
@@ -99,6 +104,29 @@
           Description is required (min 10 characters).
         </div>
       </div>
+
+      <!-- Image Upload (Full Width) -->
+      <div class="form-group mb-8 col-span-full" id="group-image">
+        <label for="image" class="block text-sm font-medium text-gray-800 mb-1"
+          >Upload Assets (upto 3 images)</label
+        >
+        <!-- File input styling is browser-dependent, keeping simple for Tailwind theme -->
+        <div class="file-input-wrapper">
+          <input
+            type="file"
+            name="image"
+            id="image"
+            multiple
+            required
+            class="text-gray-800 block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border file:border-gray-300 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition duration-150"
+          />
+        </div>
+        <div class="error-message text-red-600 text-xs mt-1" id="error-image">
+          Please select at least one file.
+        </div>
+      </div>
+
+
 
       <!-- Submit Button -->
       <button
@@ -117,6 +145,3 @@
     </a>
   </div>
 </div>
-
-
-

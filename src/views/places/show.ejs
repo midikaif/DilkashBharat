@@ -4,20 +4,38 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
   <!-- Place Details Section -->
   <div class="bg-white shadow-2xl rounded-xl overflow-hidden mb-10">
-    <!-- Image Section -->
-    <div class="relative w-full">
-      
-      <img
-        id="placeImage"
-        src="<%= place?.images[0]?.url  || 'https://placehold.co/1200x500/065f46/ffffff?text=Breathtaking+Vista' %>"
-        alt="Place Image"
-        class="w-full h-96 object-cover object-center rounded-t-xl"
-      />
-      <div
-        class="absolute top-4 left-4 bg-white/80 backdrop-blur-sm text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full flex items-center shadow-md border border-white/90"
-      >
-        <i data-lucide="award" class="w-3 h-3 mr-1 text-emerald-600"></i>
-        <span>Submitted by: <%= place.author.username %></span>
+    <div class="carousel-container">
+      <div class="carousel-main-images">
+        <!-- Image Section -->
+        <div class="relative w-full">
+          <% for(let i=0; i < place.images.length; i++){ %>
+          <img
+            id="placeImage"
+            src="<%= place.images[i].url || 'https://placehold.co/1200x500/065f46/ffffff?text=Breathtaking+ista' %>"
+            alt="Place Image"
+            class="carousel-image <% if (i === 0) { %> active <% } %> w-full h-96 object-cover object-center rounded-t-xl"
+            data-slide-index="<%= i + 1 %>"/>
+          <% } %>
+        </div>
+        <div
+          class="absolute top-4 left-4 bg-white/80 backdrop-blur-sm text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full flex items-center shadow-md border border-white/90">
+          <i data-lucide="award" class="w-3 h-3 mr-1 text-emerald-600"></i>
+          <span>Submitted by: <%= place.author.username %></span>
+        </div>
+        <div class="carousel-thumbnails">
+          <% for(let i=0; i < place.images.length; i++){ %>
+            <img
+              class="thumbnail-item active"
+              src="<%= place.images[i].url || 'https://placehold.co/1200x500/065f46/ffffff?text=Breathtaking+ista' %>"
+              data-index="<%= i + 1 %>"
+              role="button"
+              aria-label="Go to slide <%= i + 1 %>"
+              alt="Thumb <%= i + 1 %>"
+            />
+          <% } %>
+        </div>
+        <a class="carousel-btn prev" data-change="-1">&#10094;</a>
+        <a class="carousel-btn next" data-change="1">&#10095;</a>
       </div>
     </div>
 
@@ -46,35 +64,20 @@
             id="averageRating"
             class="text-4xl font-bold text-amber-500 flex items-center"
           >
-
-            <% 
-            let totalRating = 0; 
-            const reviewCount = place.reviews.length;
+            <% let totalRating = 0; const reviewCount = place.reviews.length;
             if(reviewCount > 0) { 
-              // Calculate the sum of all ratings 
-              totalRating = place.reviews.reduce((sum, review) => {
-                                if(review.rating){
-                  return sum + review.rating
-                } else {
-                  return sum
-                }
-              }, 0);
-              const average = (totalRating / reviewCount).toFixed(1);
-               // Calculate the whole
-              const roundedAverage = Math.round(average); 
+            totalRating = place.reviews.reduce((sum, review) => {
+            if(review.rating){ return sum + review.rating } else { return sum }
+            }, 0); const average = (totalRating / reviewCount).toFixed(1);
+            const roundedAverage = Math.round(average); %>
+            <%= average %> <% for(let i = 1; i <= 5; i++) { const color = (i <=
+            roundedAverage) ? "fill-amber-500 text-amber-500" : "text-gray-300";
             %>
-             <%= average %> 
-            <% for(let i = 1; i <= 5; i++) { 
-              const color = (i <= roundedAverage) ? "fill-amber-500 text-amber-500" : "text-gray-300"; %>
 
             <i data-lucide="star" class="w-6 h-6 ml-1 <%= color %>"></i>
-            <% } %> 
-            <% } else { %> 
-              0.0 
-              <% for(let i = 1; i <= 5; i++) { %>
-              <i data-lucide="star" class="w-6 h-6 ml-1 text-gray-300"></i>
-              <% } %> 
-            <% } %>
+            <% } %> <% } else { %> 0.0 <% for(let i = 1; i <= 5; i++) { %>
+            <i data-lucide="star" class="w-6 h-6 ml-1 text-gray-300"></i>
+            <% } %> <% } %>
           </div>
           <p id="totalReviewsCount" class="text-gray-500 text-sm mt-1">
             based on <%= place.reviews.length %> reviews
@@ -135,7 +138,8 @@
           <!-- Rating Input -->
           <div>
             <label class="block text-gray-700 font-medium mb-2"
-              >Your Rating</label>
+              >Your Rating</label
+            >
 
             <div class="rating-stars mb-4">
               <input type="radio" id="star5" name="review[rating]" value="5" />

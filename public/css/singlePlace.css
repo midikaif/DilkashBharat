@@ -1,3 +1,114 @@
+/* CSS Variables for Easy Theming */
+
+/* --- Carousel Container (Main Wrapper) --- */
+.carousel-container {
+  width: 100%;
+  position: relative;
+}
+
+/* --- Main Image Display Area --- */
+.carousel-main-images {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Trend: Smooth Fade/Slide Transition */
+.carousel-image {
+  position: absolute; /* Stack images */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.8s ease-in-out; /* Smooth fade transition */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Use cover for a cleaner edge-to-edge look */
+  border-radius: 12px 12px 0 0;
+}
+
+.carousel-image.active {
+  opacity: 1; /* Show the active image */
+  position: relative;
+}
+
+/* --- Navigation Buttons (MINIMALIST STYLING) --- */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin-top: -24px;
+  color: #fff; /* White arrow */
+  font-weight: 300; /* Lighter weight for modern look */
+  font-size: 30px;
+  text-align: center;
+  line-height: 48px;
+  transition: all 0.3s ease;
+  user-select: none;
+  background-color: #20c8a484;
+  /* rgba(0, 0, 0, 0.35) */
+  /* Translucent background */
+  border: none;
+  z-index: 10;
+  border-radius: 50%; /* Circular */
+  backdrop-filter: blur(2px); /* Trend: Subtle blur effect */
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+/* Hover effect: Subtle opacity increase */
+.prev:hover,
+.next:hover {
+  background-color: #20c8a4;
+  transform: scale(1.05);
+}
+
+/* --- Thumbnail Strip (CLEAN & SUBTLE) --- */
+.carousel-thumbnails {
+  position: absolute;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: 12px; /* Slightly more space */
+  padding: 15px 10px;
+  /* background-color: #ffffff; */
+  /* border-top: 1px solid #eeeeee; */
+  overflow-x: auto;
+}
+
+.thumbnail-item {
+  cursor: pointer;
+  width: 120px; /* Slightly larger thumbnails */
+  height: 80px;
+  opacity: 0.6;
+  transition: opacity 0.3s, border 0.3s;
+  border: 3px solid #20c8a4;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px #20c8a4;
+}
+
+.thumbnail-item:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.thumbnail-item.active {
+  opacity: 1;
+  border-color: #fff; /* Use primary color for highlight */
+  transform: none;
+}
+
 /* Custom scrollbar for review list */
 .reviews-list::-webkit-scrollbar {
   width: 8px;
@@ -16,6 +127,7 @@
   direction: rtl;
   text-align: left;
 }
+
 .rating-stars > input {
   display: none;
 }

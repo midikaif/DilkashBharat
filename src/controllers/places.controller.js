@@ -39,17 +39,20 @@ function newPlaceForm(req, res) {
 
 async function addNewPlace(req, res) {
   try {
-    const images = req.files.map(file => ({url: file.path, filename: file.filename}));
+    const images = req.files.map((file) => ({
+      url: file.path,
+      filename: file.filename,
+    }));
     const place = await placesModel.create({
       ...req.body.place,
       author: req.user._id,
-      images
+      images,
     });
     if (!place) {
       req.flash("error", "Couldn't add a new place!");
       return res.redirect("places");
     }
-    
+
     req.flash("success", "Successfully added a new place!");
     res.redirect(`places/${place._id}`);
   } catch (e) {
@@ -65,7 +68,6 @@ async function showEditPlace(req, res) {
       req.flash("error", "Can't find this place!");
       return res.redirect("places");
     }
-    console.log(place);
     res.render("places/edit", { place });
   } catch (e) {
     console.log(e);
@@ -75,17 +77,23 @@ async function showEditPlace(req, res) {
 async function editPlace(req, res) {
   try {
     const { id } = req.params;
-    console.log(req.body);
-
+    
     const updatedPlace = await placesModel.findByIdAndUpdate(id, {
-      ...req.body.place,
+      ...req.body.place,  
     });
-    console.log('2')
+    
+    const images = req.files.map((file) => ({
+      url: file.path,
+      filename: file.filename,
+    }));
+
+    updatedPlace.images.push(...images);
+    await updatedPlace.save();
+
     if (!updatedPlace) {
       req.flash("error", "Can't update the place!");
       return res.redirect("places");
     }
-    console.log('3')
     req.flash("success", "Successfully edited the place!");
     res.redirect(`/places/${updatedPlace._id}`);
   } catch (e) {
