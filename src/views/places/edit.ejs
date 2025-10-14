@@ -125,9 +125,19 @@
           Please select at least one file.
         </div>
       </div>
-
-
-
+      
+      <div
+        id="image-preview-container"
+        class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+      >
+      <% for(let image of place.images){ %>
+        <img
+          src="<%= image.url %>"
+          alt="<%= image.filename %>"
+          class="h-24 w-full object-cover rounded-lg shadow-md"
+        />
+        <% } %>
+      </div>
       <!-- Submit Button -->
       <button
         type="submit"

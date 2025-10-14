@@ -39,15 +39,18 @@ function newPlaceForm(req, res) {
 
 async function addNewPlace(req, res) {
   try {
+    
     const images = req.files.map((file) => ({
       url: file.path,
       filename: file.filename,
     }));
+
     const place = await placesModel.create({
       ...req.body.place,
       author: req.user._id,
-      images,
+      images
     });
+    
     if (!place) {
       req.flash("error", "Couldn't add a new place!");
       return res.redirect("places");
@@ -81,7 +84,7 @@ async function editPlace(req, res) {
     const updatedPlace = await placesModel.findByIdAndUpdate(id, {
       ...req.body.place,  
     });
-    
+
     const images = req.files.map((file) => ({
       url: file.path,
       filename: file.filename,

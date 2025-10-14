@@ -38,7 +38,6 @@
             required
             minlength="3"
             placeholder="e.g., Hidden Haunted Place"
-            value="<%= formData?.place?.title || ''%>"
           />
           <div class="error-message text-red-600 text-xs mt-1" id="error-title">
             Title is required (min 3 characters).
@@ -60,7 +59,6 @@
             required
             minlength="3"
             placeholder="e.g., Goa, India"
-            value="<%= formData?.place?.location || ''%>"
           />
           <div
             class="error-message text-red-600 text-xs mt-1"
@@ -87,9 +85,8 @@
           minlength="10"
           placeholder="Provide a detailed summary of the place's significance..."
         >
-        <%= formData?.place?.description || ''%>
-      </textarea>
-        
+        </textarea>
+
         <div
           class="error-message text-red-600 text-xs mt-1"
           id="error-description"
@@ -98,25 +95,28 @@
         </div>
       </div>
 
-      <!-- Image Upload (Full Width) -->
       <div class="form-group mb-8 col-span-full" id="group-image">
         <label for="image" class="block text-sm font-medium text-gray-800 mb-1"
           >Upload Assets (upto 3 images)</label
         >
-        <!-- File input styling is browser-dependent, keeping simple for Tailwind theme -->
         <div class="file-input-wrapper">
           <input
             type="file"
             name="image"
             id="image"
             multiple
-            required
+            accept="image/*"
             class="text-gray-800 block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border file:border-gray-300 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition duration-150"
           />
         </div>
         <div class="error-message text-red-600 text-xs mt-1" id="error-image">
           Please select at least one file.
         </div>
+
+        <div
+          id="image-preview-container"
+          class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+        ></div>
       </div>
 
       <!-- Submit Button -->

@@ -9,7 +9,7 @@ const Places = new mongoose.Schema(
     images: [
       {
         url: String,
-        fileName: String,
+        filename: String,
       }
     ],
     description: String,
