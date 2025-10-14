@@ -115,9 +115,8 @@
           <input
             type="file"
             name="image"
-            id="image"
+            id="editimage"
             multiple
-            required
             class="text-gray-800 block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border file:border-gray-300 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition duration-150"
           />
         </div>
@@ -128,15 +127,21 @@
       
       <div
         id="image-preview-container"
-        class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+        class="my-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
       >
-      <% for(let image of place.images){ %>
-        <img
+      <% place.images.forEach(function(image,i) { %>
+        <div>
+          <img
           src="<%= image.url %>"
           alt="<%= image.filename %>"
           class="h-24 w-full object-cover rounded-lg shadow-md"
-        />
-        <% } %>
+          />
+          <div>
+            <input type="checkbox" id="image-<%= i %>" name="deleteImages[]" value="<%= image.filename %>">
+          </div>
+          <label for="image-<%= i %>">Delete?</label>
+        </div>
+      <% }) %>
       </div>
       <!-- Submit Button -->
       <button

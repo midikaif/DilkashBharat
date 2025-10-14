@@ -80,7 +80,7 @@ async function showEditPlace(req, res) {
 async function editPlace(req, res) {
   try {
     const { id } = req.params;
-    
+    console.log(req.body);    
     const updatedPlace = await placesModel.findByIdAndUpdate(id, {
       ...req.body.place,  
     });
@@ -92,6 +92,11 @@ async function editPlace(req, res) {
 
     updatedPlace.images.push(...images);
     await updatedPlace.save();
+
+    if(req.body.deleteImages){
+      await updatedPlace.updateOne({$pull: {images: {filename: {$in: req.body.deleteImages}}}});
+      console.log(updatedPlace);
+    }
 
     if (!updatedPlace) {
       req.flash("error", "Can't update the place!");
