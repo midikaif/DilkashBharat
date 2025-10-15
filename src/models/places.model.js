@@ -6,11 +6,22 @@ const Places = new mongoose.Schema(
   {
     title: String,
     location: String,
+    geometry: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        required: true,
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
+    },
     images: [
       {
         url: String,
         filename: String,
-      }
+      },
     ],
     description: String,
     author: {

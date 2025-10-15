@@ -1,12 +1,16 @@
 const placesModel = require("../models/places.model");
 const reviewsModel = require("../models/reviews.model");
 
+const maptilerClient = require("@maptiler/client");
+maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
+
 async function showPlaces(req, res) {
   try {
     const allPlaces = await placesModel.find({});
     if (!allPlaces) {
       throw new Error("No Places found!");
     }
+
     res.render("places/index", { allPlaces });
   } catch (e) {
     console.log(e);
@@ -39,18 +43,32 @@ function newPlaceForm(req, res) {
 
 async function addNewPlace(req, res) {
   try {
-    
-    const images = req.files.map((file) => ({
+    const geoData = await maptilerClient.geocoding.forward(
+      req.body.place.location,
+      { limit: 1 }
+    );
+    // console.log(geoData, geoData.features[0].geometry);
+    if (!geoData.features?.length) {
+      req.flash(
+        "error",
+        "Could not geocode that location. Please try again and enter a valid location."
+      );
+      return res.redirect("/places/new");
+    }
+
+    const place = new placesModel(req.body.place);
+
+    place.geometry = geoData.features[0].geometry;
+    place.location = geoData.features[0].place_name;
+    place.author = req.user._id;
+    place.images = req.files.map((file) => ({
       url: file.path,
       filename: file.filename,
     }));
 
-    const place = await placesModel.create({
-      ...req.body.place,
-      author: req.user._id,
-      images
-    });
-    
+    await place.save();
+    console.log(place);
+
     if (!place) {
       req.flash("error", "Couldn't add a new place!");
       return res.redirect("places");
@@ -80,10 +98,26 @@ async function showEditPlace(req, res) {
 async function editPlace(req, res) {
   try {
     const { id } = req.params;
-    console.log(req.body);    
+
+    const geoData = await maptilerClient.geocoding.forward(
+      req.body.place.location,
+      { limit: 1 }
+    );
+    // console.log(geoData);
+    if (!geoData.features?.length) {
+      req.flash(
+        "error",
+        "Could not geocode that location. Please try again and enter a valid location."
+      );
+      return res.redirect(`/places/${id}/edit`);
+    }
+
     const updatedPlace = await placesModel.findByIdAndUpdate(id, {
-      ...req.body.place,  
+      ...req.body.place,
     });
+
+    updatedPlace.geometry = geoData.features[0].geometry;
+    updatedPlace.location = geoData.features[0].place_name;
 
     const images = req.files.map((file) => ({
       url: file.path,
@@ -93,8 +127,14 @@ async function editPlace(req, res) {
     updatedPlace.images.push(...images);
     await updatedPlace.save();
 
-    if(req.body.deleteImages){
-      await updatedPlace.updateOne({$pull: {images: {filename: {$in: req.body.deleteImages}}}});
+    if (req.body.deleteImages) {
+      for (let filename of req.body.deleteImages) {
+        await cloudinary.uploader.destroy(filename);
+      }
+
+      await updatedPlace.updateOne({
+        $pull: { images: { filename: { $in: req.body.deleteImages } } },
+      });
       console.log(updatedPlace);
     }
 

@@ -1,4 +1,7 @@
 <% layout('layouts/boilerplate')%>
+
+<div id="map" style="width: 100%; height: 500px"></div>
+
 <div class="max-w-7xl mx-auto">
   <!-- Title -->
   <h1
@@ -60,3 +63,20 @@
     <% } %>
   </div>
 </div>
+
+
+<%- "<script>" %>
+const maptilerApiKey = "<%- process.env.MAPTILER_API_KEY %>";
+const places = {
+  type: "FeatureCollection",
+  features: <%- JSON.stringify(
+    allPlaces.map(place => ({
+      type: "Feature",
+      geometry: place.geometry,
+      properties: { popUpMarkup: place?.properties?.popUpMarkup }
+    }))
+  ) %>
+};
+<%- "</script>" %>
+
+<script src="/js/clusterMap.js"></script>

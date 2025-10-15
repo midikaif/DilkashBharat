@@ -120,6 +120,8 @@
     </div>
   </div>
 
+  
+  <div id="map" style="width: 100%; height: 300px;"></div>
   <!-- --- REVIEWS SECTION --- -->
   <div id="reviews" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Review Form (Left/Top) -->
@@ -261,3 +263,11 @@
     </div>
   </div>
 </div>
+
+<%-"<script>"%>
+const maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
+const place = <%- JSON.stringify(place) %>;
+<%-"</script>"%>
+
+<script src="/js/showPageMap.js"></script>
+
