@@ -7,6 +7,8 @@ const map = new maptilersdk.Map({
   zoom: 10, // starting zoom
 });
 
+console.log(place.title);
+
 new maptilersdk.Marker()
   .setLngLat(place.geometry.coordinates)
   .setPopup(

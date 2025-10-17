@@ -64,7 +64,7 @@ thumbnailContainer.addEventListener("click", function (event) {
   if (event.target.classList.contains("thumbnail-item")) {
     // Get the index from the data-index attribute
     const index = parseInt(event.target.getAttribute("data-index"));
-
+    
     showSlides((slideIndex = index));
     resetTimer();
   }

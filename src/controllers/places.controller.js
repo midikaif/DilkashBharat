@@ -6,6 +6,7 @@ maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 async function showPlaces(req, res) {
   try {
+    console.log(req.query);
     const allPlaces = await placesModel.find({});
     if (!allPlaces) {
       throw new Error("No Places found!");
@@ -29,7 +30,8 @@ async function singlePlace(req, res) {
       })
       .populate("author");
     if (!place) {
-      throw new Error("Couldn't find the place!");
+      req.flash("error", "Couldn't find that place!");
+      return res.redirect("/places");
     }
     res.render("places/show", { place });
   } catch (e) {
