@@ -21,7 +21,6 @@
   opacity: 0; /* Hidden by default */
   transition: opacity 0.8s ease-in-out; /* Smooth fade transition */
   width: 100%;
-  height: 100%;
   object-fit: cover; /* Use cover for a cleaner edge-to-edge look */
   border-radius: 12px 12px 0 0;
 }

@@ -49,12 +49,17 @@ async function addNewPlace(req, res) {
       req.body.place.location,
       { limit: 1 }
     );
-    // console.log(geoData, geoData.features[0].geometry);
+
     if (!geoData.features?.length) {
       req.flash(
         "error",
         "Could not geocode that location. Please try again and enter a valid location."
       );
+      return res.redirect("/places/new");
+    }
+
+    if (geoData.features[0].properties.country_code !== "in") {
+      req.flash("error", "Please enter a location within India.");
       return res.redirect("/places/new");
     }
 
@@ -111,6 +116,11 @@ async function editPlace(req, res) {
         "error",
         "Could not geocode that location. Please try again and enter a valid location."
       );
+      return res.redirect(`/places/${id}/edit`);
+    }
+
+    if (geoData.features[0]?.properties.country_code !== "in") {
+      req.flash("error", "Please enter a location within India.");
       return res.redirect(`/places/${id}/edit`);
     }
 

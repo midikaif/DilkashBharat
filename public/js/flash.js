@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const autoDismissTimer = setTimeout(() => {
       dismissAlert();
-    }, 3500);
+    }, 5500);
 
     alert.dataset.timerId = autoDismissTimer;
 

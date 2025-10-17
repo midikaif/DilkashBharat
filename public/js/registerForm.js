@@ -1,45 +1,45 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-import {
-  getAuth,
-  signInAnonymously,
-  signInWithCustomToken,
-  createUserWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+// import {
+//   getAuth,
+//   signInAnonymously,
+//   signInWithCustomToken,
+//   createUserWithEmailAndPassword,
+// } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-// --- MANDATORY FIREBASE SETUP ---
-const appId = typeof __app_id !== "undefined" ? __app_id : "default-app-id";
-const firebaseConfig =
-  typeof __firebase_config !== "undefined" ? JSON.parse(__firebase_config) : {};
-const initialAuthToken =
-  typeof __initial_auth_token !== "undefined" ? __initial_auth_token : null;
+// // --- MANDATORY FIREBASE SETUP ---
+// const appId = typeof __app_id !== "undefined" ? __app_id : "default-app-id";
+// const firebaseConfig =
+//   typeof __firebase_config !== "undefined" ? JSON.parse(__firebase_config) : {};
+// const initialAuthToken =
+//   typeof __initial_auth_token !== "undefined" ? __initial_auth_token : null;
 
-let auth = null;
+// let auth = null;
 
-async function initializeFirebase() {
-  try {
-    if (Object.keys(firebaseConfig).length === 0) {
-      console.error("Firebase configuration is missing or empty.");
-      auth = { currentUser: { uid: "anonymous" } };
-      return;
-    }
+// async function initializeFirebase() {
+//   try {
+//     if (Object.keys(firebaseConfig).length === 0) {
+//       console.error("Firebase configuration is missing or empty.");
+//       auth = { currentUser: { uid: "anonymous" } };
+//       return;
+//     }
 
-    const app = initializeApp(firebaseConfig);
-    auth = getAuth(app);
+//     const app = initializeApp(firebaseConfig);
+//     auth = getAuth(app);
 
-    if (initialAuthToken) {
-      await signInWithCustomToken(auth, initialAuthToken);
-    } else {
-      await signInAnonymously(auth);
-    }
-    console.log("Firebase initialized and user authenticated.");
-  } catch (error) {
-    console.error(
-      "Error during Firebase initialization or authentication:",
-      error
-    );
-    auth = auth || { currentUser: { uid: crypto.randomUUID() } };
-  }
-}
+//     if (initialAuthToken) {
+//       await signInWithCustomToken(auth, initialAuthToken);
+//     } else {
+//       await signInAnonymously(auth);
+//     }
+//     console.log("Firebase initialized and user authenticated.");
+//   } catch (error) {
+//     console.error(
+//       "Error during Firebase initialization or authentication:",
+//       error
+//     );
+//     auth = auth || { currentUser: { uid: crypto.randomUUID() } };
+//   }
+// }
 
 // --- FORM LOGIC AND VALIDATION ---
 
@@ -169,7 +169,7 @@ async function handleRegistration(e) {
 
 // Initial setup and event listeners
 window.onload = async () => {
-  await initializeFirebase();
+  // await initializeFirebase();
 //   registerForm.addEventListener("submit", handleRegistration);
 
   // Add dynamic validation listener for instant feedback as the user types

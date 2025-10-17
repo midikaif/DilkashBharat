@@ -1,74 +1,75 @@
-let slideIndex = 1;
-let slideTimer;
-const intervalTime = 4000;
-const mainImagesContainer = document.querySelector(".carousel-main-images");
-const prevNextButtons = document.querySelectorAll(".carousel-btn");
-const thumbnailContainer = document.querySelector(".carousel-thumbnails");
+let slides = document.getElementsByClassName("carousel-image");
+if(slides.length !== 0){
+  let slideIndex = 1;
+  let slideTimer;
+  const intervalTime = 4000;
+  const mainImagesContainer = document.querySelector(".carousel-main-images");
+  const prevNextButtons = document.querySelectorAll(".carousel-btn");
+  const thumbnailContainer = document.querySelector(".carousel-thumbnails");
 
-startSlideshow();
-
-
-/* --- JS UTILITY FUNCTIONS --- */
-
-function resetTimer() {
-  clearInterval(slideTimer);
   startSlideshow();
-}
 
-function startSlideshow() {
-  showSlides(slideIndex);
-  slideTimer = setInterval(() => {
-    showSlides((slideIndex += 1));
-  }, intervalTime);
-}
+  /* --- JS UTILITY FUNCTIONS --- */
 
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("carousel-image");
-  let thumbs = document.getElementsByClassName("thumbnail-item");
-
-  if (n > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
+  function resetTimer() {
+    clearInterval(slideTimer);
+    startSlideshow();
   }
 
-  for (i = 0; i < slides.length; i++) {
-    slides[i].classList.remove("active");
-    thumbs[i].classList.remove("active");
+  function startSlideshow() {
+    showSlides(slideIndex);
+    slideTimer = setInterval(() => {
+      showSlides((slideIndex += 1));
+    }, intervalTime);
   }
 
-  slides[slideIndex - 1].classList.add("active");
-  thumbs[slideIndex - 1].classList.add("active");
-}
+  function showSlides(n) {
+    let i;
+    let thumbs = document.getElementsByClassName("thumbnail-item");
 
-/* ------------------------------------------------------------------ */
-/* NEW: EVENT LISTENERS FOR EJS COMPATIBILITY               */
-/* ------------------------------------------------------------------ */
+    if (n > slides.length) {
+      slideIndex = 1;
+    }
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
 
-// 1. Prev/Next Button Listeners
-prevNextButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    // Get the direction from the data-change attribute
-    const change = parseInt(this.getAttribute("data-change"));
+    for (i = 0; i < slides.length; i++) {
+      slides[i].classList.remove("active");
+      thumbs[i].classList.remove("active");
+    }
 
-    showSlides((slideIndex += change));
-    resetTimer();
+    slides[slideIndex - 1].classList.add("active");
+    thumbs[slideIndex - 1].classList.add("active");
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* NEW: EVENT LISTENERS FOR EJS COMPATIBILITY               */
+  /* ------------------------------------------------------------------ */
+
+  // 1. Prev/Next Button Listeners
+  prevNextButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      // Get the direction from the data-change attribute
+      const change = parseInt(this.getAttribute("data-change"));
+
+      showSlides((slideIndex += change));
+      resetTimer();
+    });
   });
-});
 
-// 2. Thumbnail Click Listener (using Event Delegation on the container)
-thumbnailContainer.addEventListener("click", function (event) {
-  // Check if the clicked element is a thumbnail-item
-  if (event.target.classList.contains("thumbnail-item")) {
-    // Get the index from the data-index attribute
-    const index = parseInt(event.target.getAttribute("data-index"));
-    
-    showSlides((slideIndex = index));
-    resetTimer();
-  }
-});
+  // 2. Thumbnail Click Listener (using Event Delegation on the container)
+  thumbnailContainer.addEventListener("click", function (event) {
+    // Check if the clicked element is a thumbnail-item
+    if (event.target.classList.contains("thumbnail-item")) {
+      // Get the index from the data-index attribute
+      const index = parseInt(event.target.getAttribute("data-index"));
+
+      showSlides((slideIndex = index));
+      resetTimer();
+    }
+  });
+}
 
 
 

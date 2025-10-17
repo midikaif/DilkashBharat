@@ -9,11 +9,14 @@ async function register(req, res) {
     console.log(req.body);
     const { firstName, lastName, email, username, password } = req.body;
     const fullName = { firstName, lastName };
-    console.log(fullName);
+    const userAlreadyExists = await userModel.findOne({ email });
+    if(userAlreadyExists){
+        req.flash("error", "User with given email already exists");
+        return res.redirect("register");
+    }
     const user = new userModel({ fullName, email, username });
     const registeredUser = await userModel.register(user, password);
-    console.log(res.login);
-    res.login(registeredUser, (err) => {
+    req.login(registeredUser, (err) => {
       if (err) return next(err);
       req.flash("success", "Welcome to Dilkash!");
       res.redirect("/places");

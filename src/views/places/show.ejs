@@ -79,20 +79,30 @@
             id="averageRating"
             class="text-4xl font-bold text-amber-500 flex items-center"
           >
-            <% let totalRating = 0; const reviewCount = place.reviews.length;
+            <% let totalRating = 0; 
+            const reviewCount = place.reviews.length;
             if(reviewCount > 0) { 
-            totalRating = place.reviews.reduce((sum, review) => {
-            if(review.rating){ return sum + review.rating } else { return sum }
-            }, 0); const average = (totalRating / reviewCount).toFixed(1);
+              totalRating = place.reviews.reduce((sum, review) => {
+                if(review.rating){
+                  return sum + review.rating 
+                } else {
+                  return sum
+                }
+              }, 0);
+            const average = (totalRating / reviewCount).toFixed(1);
             const roundedAverage = Math.round(average); %>
-            <%= average %> <% for(let i = 1; i <= 5; i++) { const color = (i <=
-            roundedAverage) ? "fill-amber-500 text-amber-500" : "text-gray-300";
+            <%= average %> 
+            <% for(let i = 1; i <= 5; i++) {
+              const color = (i <= roundedAverage) ? "fill-amber-500 text-amber-500" : "text-gray-300";
             %>
-
             <i data-lucide="star" class="w-6 h-6 ml-1 <%= color %>"></i>
-            <% } %> <% } else { %> 0.0 <% for(let i = 1; i <= 5; i++) { %>
-            <i data-lucide="star" class="w-6 h-6 ml-1 text-gray-300"></i>
-            <% } %> <% } %>
+            <% } %> 
+            <% } else { %>
+              0.0 
+              <% for(let i = 1; i <= 5; i++) { %>
+                <i data-lucide="star" class="w-6 h-6 ml-1 text-gray-300"></i>
+              <% } %>
+            <% } %>
           </div>
           <p id="totalReviewsCount" class="text-gray-500 text-sm mt-1">
             based on <%= place.reviews.length %> reviews
@@ -106,10 +116,8 @@
           Description
         </h3>
         <p id="placeDescription" class="text-gray-600 leading-relaxed">
-          A breathtaking overlook featuring a lush green landscape meeting the
-          deep blue sea. Ideal for sunset viewing and hiking enthusiasts. The
-          trails are well-maintained but steep in sections.
-        </p>
+          <%= place.description %>
+          </p>
       </div>
 
       <!-- Action Buttons -->
@@ -286,4 +294,6 @@ console.log(maptilerApiKey);
 <%-"</script>"%>
 
 <script src="/js/showPageMap.js"></script>
+<script type="module" src="/js/singlePlace.js"></script>
+<script type="module" src="/js/reviews.js"></script>
 

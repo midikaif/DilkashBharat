@@ -1,0 +1,206 @@
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.notification {
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  width: 350px;
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  padding: 14px 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding-top: 20px;
+  backdrop-filter: blur(150px);
+  animation: animate 3s;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    scale: 0;
+    /* transform: translateX(330px); */
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+    /* transfrom: translateX(-300px); */
+  }
+}
+
+/* Flash message */
+
+.alert-container {
+  transition: transform 0.3s ease-out, opacity 0.5s ease-out;
+  transform: translateY(-100%) translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+}
+/* The 'show' class makes the alert visible and starts the timer */
+.alert-container.show {
+  transform: translateY(0) translateX(-50%);
+  opacity: 1;
+  pointer-events: auto;
+}
+.inter-font {
+  font-family: "Inter", sans-serif;
+}
+
+/* Custom Glassmorphism Base Class */
+.glass-alert-base {
+  /* 1. Blur Effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+
+  /* 2. Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.15);
+
+  /* 3. Subtle Border (optional but enhances the look) */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Ensure the text and icons pop */
+.glass-alert-text {
+  color: #f7f7f7; /* Light text for readability */
+}
+
+/* ====== Add new Place ========= */
+
+.glassmorphic-card {
+  background: rgba(255, 255, 255, 0.15); /* Translucent white background */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Shadow */
+  backdrop-filter: blur(10px); /* The key to the effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+  border-radius: 10px; /* Rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Light border */
+}
+
+/* Ensuring inputs have a slightly transparent background to blend */
+.glass-input {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Slightly more opaque for readability */
+}
+
+.body-bg {
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.form-group.has-error .glass-input {
+  border-color: #dc2626; /* Red-600 border for error state */
+}
+
+.error-message {
+  display: none; /* Hidden by default */
+}
+
+.form-group.has-error .error-message {
+  display: block; /* Show error message when .has-error is present */
+}
+
+/* --- Animated Background Styles --- */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0; /* Behind the main content */
+  pointer-events: none;
+}
+
+/* --- New Shape Definitions and Animations --- */
+.shape {
+  position: absolute;
+  z-index: 0; /* Keep behind the main card (z-index 10) */
+  opacity: 0.7;
+  /* Transparent white background ensures visibility in a light theme */
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(25px); /* Strong blur */
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Clearer white border */
+  transition: all 0.5s;
+  pointer-events: none;
+}
+
+/* Shape 1: Large Circle Movement */
+@keyframes moveShape1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  30% {
+    transform: translate(-35vw, 20vh) scale(1.1);
+  }
+  60% {
+    transform: translate(15vw, 45vh) scale(0.9);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.shape-circle-large {
+  width: 400px;
+  height: 400px;
+  bottom: -5%;
+  right: -10%;
+  border-radius: 50%;
+  animation: moveShape1 28s infinite alternate ease-in-out;
+}
+
+/* Shape 2: Large Square Movement */
+@keyframes moveShape2 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  40% {
+    transform: translate(45vw, -25vh) rotate(180deg);
+  }
+  80% {
+    transform: translate(-10vw, 35vh) rotate(300deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+.shape-square {
+  width: 300px;
+  height: 300px;
+  top: -10%;
+  left: -15%;
+  border-radius: 60px;
+  animation: moveShape2 38s infinite alternate ease-in-out;
+}
+
+/* Shape 3: Small Circle Movement */
+@keyframes moveShape3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-15vw, 50vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.shape-circle-small {
+  width: 200px;
+  height: 200px;
+  top: 20%;
+  right: 5%;
+  border-radius: 50%;
+  animation: moveShape3 20s infinite alternate linear;
+}
