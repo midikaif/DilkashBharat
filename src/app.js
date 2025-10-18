@@ -54,6 +54,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req,res)=>{
+  res.render('home/home');
+})
+
 app.use("/auth", authRoutes);
 app.use("/places", placesRoutes);
 

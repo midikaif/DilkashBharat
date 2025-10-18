@@ -1,5 +1,5 @@
 let slides = document.getElementsByClassName("carousel-image");
-if(slides.length !== 0){
+if (slides.length !== 0) {
   let slideIndex = 1;
   let slideTimer;
   const intervalTime = 4000;
@@ -71,18 +71,31 @@ if(slides.length !== 0){
   });
 }
 
-
-
 // --- 1. Utility Function: Renders Star Icons ---
 function renderRatingStars(rating) {
   let starsHtml = "";
+  // The SVG code for the Lucide 'star' icon
+  const STAR_SVG = `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+  </svg>
+`;
+
   // Ensure rating is a number (round it for display)
   const displayRating = Math.round(rating);
 
   for (let i = 1; i <= 5; i++) {
-    const color =
-      i <= displayRating ? "fill-amber-500 text-amber-500" : "text-gray-300";
-    starsHtml += `<i data-lucide="star" class="w-5 h-5 ${color}"></i>`;
+    // Determine color: filled star uses fill-amber-500, empty star uses stroke-gray-300
+    const colorClasses =
+      i <= displayRating
+        ? "fill-amber-500 text-amber-500" // For filled stars
+        : "fill-none text-gray-300"; // For empty stars (only border shown)
+
+    // Combine all size and color classes
+    const finalClasses = `w-5 h-5 ${colorClasses}`;
+
+    // Insert the final classes into the SVG tag
+    starsHtml += STAR_SVG.replace("<svg", `<svg class="${finalClasses}"`);
   }
 
   return `<div class="flex">${starsHtml}</div>`;

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: rgb(255, 139, 6);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 50px;
+      }
+
+      .hero-container {
+        position: relative;
+        width: calc(100% - 100px);
+        min-height: calc(100vh - 280px);
+        min-height: 300px;
+        /* background: rgba(255, 255, 255, 0.5); */
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px;
+        z-index: 100;
+      }
+
+      .hero-container header {
+        position: absolute;
+        top: -40px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        border-left: 1px solid rgba(255, 255, 255, 0.5);
+      }
+
+      .hero-container header .logo {
+        color: #8a2435;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 2em;
+      }
+
+      .hero-container header ul {
+        display: flex;
+      }
+
+      .hero-container header ul li {
+        list-style: none;
+        margin: 0 10px;
+      }
+
+      .hero-container header ul li a {
+        text-decoration: none;
+        font-weight: 500;
+        color: #8a2435;
+        padding: 8px 15px;
+        border-radius: 25px;
+      }
+
+      .hero-container header ul li a:hover,
+      .hero-container header ul li a.active {
+        background: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .hero-container .content {
+        transform: translateX(-100px);
+        max-width: 700px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        border-left: 1px solid rgba(255, 255, 255, 0.5);
+        padding: 30px;
+        padding-left: 110px;
+        margin-top: 10px;
+      }
+
+      .hero-container .content h2 {
+        font-size: 3em;
+        color: #8a2435;
+      }
+
+      .hero-container .content p {
+        font-size: 1.2em;
+        color: #8a2435;
+      }
+
+      .hero-container .content a {
+        display: inline-block;
+        padding: 15px 30px;
+        background: #fff;
+        color: #8a2435;
+        margin-top: 20px;
+        border-radius: 30px;
+        font-size: 1.2em;
+        text-decoration: none;
+      }
+
+      .hero-container .hero-img {
+        max-width: 400px;
+        animation: animate2 5s linear infinite;
+      }
+
+      @keyframes animate2 {
+        0%,
+        100% {
+          transform: translateY(20px);
+        }
+        50% {
+          transform: translateY(70px);
+        }
+      }
+
+      .hero-container .social {
+        position: absolute;
+        right: -25px;
+      }
+
+      .hero-container .social li {
+        list-style: none;
+      }
+
+      .hero-container .social li a {
+        text-decoration: none;
+        width: 50px;
+        height: 50px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        margin: 5px 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .hero-container .social li a img {
+        transform: scale(0.6);
+        transition: 0.5s;
+      }
+
+      .hero-container .social li:hover a img {
+        transform: scale(0.6) rotate(360deg);
+      }
+
+      .hero-container .copyright {
+        position: absolute;
+        bottom: 30px;
+        left: 50px;
+        color: #8a2435;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-container">
+        <header>
+          <a href="#" class="logo">Logo</a>
+          <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </header>
+        <div class="content">
+          <h2>Glassmorphism UI</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
+            atque enim, vel quisquam repellat fugiat itaque amet harum
+            asperiores, quibusdam aspernatur! Placeat alias ex neque, labore
+            esse rem porro temporibus iusto nam, quo laborum laudantium.
+            Quibusdam dolorem eos itaque? Natus consectetur labore eos
+            quibusdam? Nobis aliquid quis molestiae, voluptates reprehenderit
+            placeat excepturi veniam dicta consequuntur.
+          </p>
+          <a href="#">Read more </a>
+        </div>
+
+        <div class="hero-img">
+          <img src="images/character.png" alt="" />
+        </div>
+
+        <div class="social">
+          <ul>
+            <li>
+              <a href="#"><img src="images/facebook.png" alt="" /></a>
+            </li>
+            <li>
+              <a href="#"><img src="images/instagram.png" alt="" /></a>
+            </li>
+            <li>
+              <a href="#"><img src="images/twitter.png" alt="" /></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="copyright">
+          &copy; 2025 Md. Kaif Khan. All rights reserved.
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

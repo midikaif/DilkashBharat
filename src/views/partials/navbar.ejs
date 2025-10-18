@@ -1,123 +1,59 @@
-<nav
-  class="fixed mb-3 top-0 left-0 w-full z-50 bg-emerald-800/80 backdrop-blur-sm shadow-xl border-b border-white/10"
->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
-      <!-- Logo and Content Links Group (Left Side) -->
-      <div class="flex items-center space-x-8">
-        <!-- Logo / Site Name -->
-        <div class="flex-shrink-0">
-          <a href="/" class="text-2xl font-bold text-white tracking-wider">
-            Dilkash
-          </a>
-        </div>
+<nav class="glass">
+  <div class="navbar-content">
+    <!-- LEFT GROUP: Logo (Dilkash) and Places (Active Pill) -->
+    <div class="nav-left">
+      <!-- Logo -->
+      <a href="#" class="logo"> Dilkash </a>
 
-        <!-- Desktop Content Links (md and up, next to logo) -->
-        <div class="hidden md:flex items-center space-x-6">
-          <a
-            href="/places"
-            class="text-white hover:text-emerald-200 transition duration-150 font-medium"
-            >Places</a
-          >
-          <a
-            href="/places/new"
-            class="text-white hover:text-emerald-200 transition duration-150 font-medium"
-            >Add Place</a
-          >
-        </div>
-      </div>
-
-      <!-- Auth Links and Search Group (Right Side) -->
-      <div class="hidden md:flex items-center space-x-6">
-        <% if(!currentUser){ %>
-        <a
-          href="/auth/register"
-          class="text-emerald-300 font-bold hover:text-white transition duration-150 border border-emerald-300 px-3 py-1 rounded-lg"
-          >Register</a
-        >
-        <a
-          href="/auth/login"
-          class="text-white hover:text-emerald-200 transition duration-150 font-medium"
-          >Login</a
-        >
-        <% } else{ %>
-        <a
-          href="/auth/logout"
-          class="text-white hover:text-emerald-200 transition duration-150 font-medium"
-          >Logout</a
-        >
-        <% } %>
-        <!-- Search Input/Icon -->
-        <div class="relative">
-          <input
-            type="text"
-            placeholder="Search..."
-            class="bg-emerald-700/50 border border-emerald-600 rounded-lg py-1 px-3 pl-8 text-sm text-white placeholder-emerald-200 focus:outline-none focus:ring-2 focus:ring-emerald-300 w-32 transition duration-150"
-          />
-          <i
-            data-lucide="search"
-            class="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-emerald-200"
-          ></i>
-        </div>
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <div class="md:hidden">
-        <button
-          id="mobile-menu-button"
-          type="button"
-          class="text-white hover:text-emerald-200 focus:outline-none"
-        >
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
-      </div>
+      <!-- Places Link (Active Pill) -->
+      <a href="/places" class="nav-link active"> Places </a>
     </div>
-  </div>
 
-  <!-- Mobile Menu (Hidden by default, toggled by JS) -->
-  <div id="mobile-menu" class="hidden md:hidden">
-    <div
-      class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-emerald-700/90 border-t border-white/10"
-    >
-      <!-- Content Links -->
-      <a
-        href="#"
-        class="text-white hover:bg-emerald-600 block px-3 py-2 rounded-md text-base font-medium"
-        >Places</a
-      >
-      <a
-        href="#"
-        class="text-white hover:bg-emerald-600 block px-3 py-2 rounded-md text-base font-medium"
-        >Add Place</a
-      >
+    <!-- RIGHT GROUP: Register, Login, Search Bar -->
+    <div class="nav-right">
+      <!-- Standard Link - Register -->
+      <a href="/auth/register" class="nav-link"> Register </a>
 
-      <!-- Auth Links -->
-      <a
-        href="#"
-        class="text-white bg-emerald-600/50 block px-3 py-2 rounded-md text-base font-medium"
-        >Register</a
-      >
-      <a
-        href="#"
-        class="text-white hover:bg-emerald-600 block px-3 py-2 rounded-md text-base font-medium"
-        >Login</a
-      >
+      <!-- Standard Link - Login -->
+      <a href="/auth/login" class="nav-link"> Login </a>
 
-      <!-- Search Input -->
-      <div class="px-3 py-2">
-        <div class="relative">
-          <input
-            type="text"
-            placeholder="Search..."
-            class="w-full bg-emerald-600/70 border border-emerald-500 rounded-lg py-1 px-3 pl-8 text-sm text-white placeholder-emerald-200 focus:outline-none focus:ring-2 focus:ring-emerald-300"
-          />
-          <i
-            data-lucide="search"
-            class="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-emerald-200"
-          ></i>
+      <!-- Search Bar -->
+      <div class="search-bar-container">
+        <!-- Search Icon -->
+        <div class="search-icon">
+          <i data-lucide="search"></i>
         </div>
+        <!-- Input Field -->
+        <input type="search" placeholder="Search..." class="search-input" />
       </div>
     </div>
   </div>
 </nav>
-<!-- End Navigation Bar -->
+
+ <script>
+        lucide.createIcons();
+    
+ document.addEventListener('DOMContentLoaded', () => {
+            // Select all navigable links
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Function to handle link clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    // Stop default action and prevent page jump for demonstration links
+                    
+                    // 1. Remove 'active' class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // 2. Add 'active' class to the clicked link
+                    event.currentTarget.classList.add('active');
+                });
+            });
+
+            // Set 'Places' as active by default on load
+            const defaultActiveLink = document.getElementById('places-link');
+            if (defaultActiveLink) {
+                defaultActiveLink.classList.add('active');
+            }
+        });    
+</script>

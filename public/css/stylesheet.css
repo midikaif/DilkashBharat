@@ -2,6 +2,341 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+/* ============================ */
+
+/* 2. Glassmorphism Effect for Navbar (.glass-nav) */
+.glass{
+  width: 100%;
+  /* Glass properties */
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+
+  border-radius: 16px; /* rounded-2xl */
+  padding: 1rem; /* p-4 */
+  transition: all 0.3s;
+}
+
+/* 3. Navbar Content Layout (.navbar-content) */
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* 4. Left Group (Logo + Places) */
+.nav-left {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem; /* space-x-6 */
+  margin-bottom: 1rem; /* mb-4 for mobile */
+}
+
+/* 5. Logo Styling (Mobile Default) */
+.logo {
+  font-size: 2rem; /* Adjusted for better mobile fit */
+  font-weight: 800; /* font-extrabold */
+  color: white; /* text-white */
+  letter-spacing: -0.025em; /* tracking-tight */
+  text-decoration: none;
+}
+
+/* 6. Right Group (Register, Login, Search) */
+.nav-right {
+  display: flex;
+  flex-direction: column; /* Stacks vertically on mobile */
+  align-items: flex-start; /* CHANGED: Align items to the left for better mobile flow */
+  gap: 0.75rem; /* space-y-3 */
+  color: white;
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 500; /* font-medium */
+  width: 100%; /* Ensures the right group uses full mobile width */
+}
+
+/* 7. Standard Links (.nav-link) */
+.nav-link {
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem; /* rounded-lg */
+  transition: all 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+  /* Make links block elements to fill the width of the container on mobile */
+  display: block;
+  white-space: nowrap;
+  color: white;
+}
+
+.nav-link:hover{
+  background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+}
+
+
+/* 8. Active Link (Places - Pill Style) */
+.nav-link.active {
+  background-color: white; /* bg-white */
+  color: #0f8c69; /* Updated text color to dark teal for contrast */
+  padding: 0.5rem 1.25rem; /* px-5 py-2 */
+  border-radius: 9999px; /* rounded-full */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-lg */
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block; /* Revert to inline for the pill shape */
+}
+
+.nav-link.active:hover {
+  background-color: #e6fffa; /* Updated hover background to light teal */
+}
+
+/* 9. Search Bar Styling */
+.search-bar-container {
+  position: relative;
+  width: 100%; /* w-full for mobile */
+}
+
+.search-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding-left: 0.75rem; /* pl-3 */
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.search-icon i {
+  width: 1.25rem; /* w-5 */
+  height: 1.25rem; /* h-5 */
+  color: white;
+  opacity: 0.75;
+}
+
+.search-input {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem 1rem 0.5rem 2.5rem; /* Adjusted padding for icon */
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  border-radius: 9999px; /* rounded-full */
+  font-size: 1rem;
+  width: 100%;
+}
+
+.search-input:hover,
+.search-input:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  outline: none;
+}
+
+/* Styling for the search cancel icon (WebKit/Chrome/Safari) */
+.search-input::-webkit-search-cancel-button {
+  filter: invert(1); /* Invert the default gray icon to white */
+  cursor: pointer;
+}
+
+/* 10. Responsive Adjustments (md: breakpoint equivalent - 768px) */
+@media (min-width: 768px) {
+  .glass-nav {
+    padding: 1.5rem; /* md:p-6 */
+  }
+  .nav-left {
+    margin-bottom: 0; /* md:mb-0 */
+  }
+
+  /* Restore desktop logo size */
+  .logo {
+    font-size: 2.25rem;
+  }
+
+  /* Restore desktop layout for right group */
+  .nav-right {
+    flex-direction: row; /* md:flex-row */
+    align-items: center; /* md:items-center */
+    gap: 1.5rem; /* md:space-x-6 */
+    margin-top: 0;
+    width: auto; /* Allow content to dictate width */
+  }
+
+  /* Restore standard links to inline-block for desktop horizontal flow */
+  .nav-link {
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .search-bar-container {
+    width: auto; /* md:w-auto */
+  }
+}
+/* ======================== */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url(images/bg2.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 50px;
+}
+
+.hero-container {
+  position: relative;
+  width: calc(100% - 100px);
+  min-height: calc(100vh - 280px);
+  min-height: 300px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  z-index: 100;
+}
+
+.hero-container header {
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.hero-container header .logo {
+  color: #8a2435;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 2em;
+}
+
+.hero-container header ul {
+  display: flex;
+}
+
+.hero-container header ul li {
+  list-style: none;
+  margin: 0 10px;
+}
+
+.hero-container header ul li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #8a2435;
+  padding: 8px 15px;
+  border-radius: 25px;
+}
+
+.hero-container header ul li a:hover,
+.hero-container header ul li a.active {
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-container .content {
+  transform: translateX(-100px);
+  max-width: 700px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 30px;
+  padding-left: 110px;
+  margin-top: 10px;
+}
+
+.hero-container .content h2 {
+  font-size: 3em;
+  color: #8a2435;
+}
+
+.hero-container .content p {
+  font-size: 1.2em;
+  color: #8a2435;
+}
+
+.hero-container .content a {
+  display: inline-block;
+  padding: 15px 30px;
+  background: #fff;
+  color: #8a2435;
+  margin-top: 20px;
+  border-radius: 30px;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+.hero-container .hero-img {
+  max-width: 400px;
+  animation: animate2 5s linear infinite;
+}
+
+@keyframes animate2 {
+  0%,
+  100% {
+    transform: translateY(20px);
+  }
+  50% {
+    transform: translateY(70px);
+  }
+}
+
+.hero-container .social {
+  position: absolute;
+  right: -25px;
+}
+
+.hero-container .social li {
+  list-style: none;
+}
+
+.hero-container .social li a {
+  text-decoration: none;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 5px 0;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-container .social li a img {
+  transform: scale(0.6);
+  transition: 0.5s;
+}
+
+.hero-container .social li:hover a img {
+  transform: scale(0.6) rotate(360deg);
+}
+
+.hero-container .copyright {
+  position: absolute;
+  bottom: 30px;
+  left: 50px;
+  color: #8a2435;
+}
+
 .notification {
   position: absolute;
   top: 100px;
