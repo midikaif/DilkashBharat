@@ -1,222 +1,401 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      .hero {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: rgb(255, 139, 6);
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        padding: 50px;
-      }
+<% layout('layouts/boilerplate') %>
 
-      .hero-container {
-        position: relative;
-        width: calc(100% - 100px);
-        min-height: calc(100vh - 280px);
-        min-height: 300px;
-        /* background: rgba(255, 255, 255, 0.5); */
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-        border-radius: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 50px;
-        z-index: 100;
-      }
+<section class="hero"></section>
+<!-- Background Floating Images (Unchanged) -->
+<div class="floating-mountain-container overflow-hidden">
 
-      .hero-container header {
-        position: absolute;
-        top: -40px;
-        left: 20px;
-        right: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 50px;
-        background: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-        border-radius: 20px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-top: 1px solid rgba(255, 255, 255, 0.5);
-        border-left: 1px solid rgba(255, 255, 255, 0.5);
-      }
+  <!-- Group 1: Mouse-following images (8 images) -->
+  <img
+    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870"
+    alt="Floating Mountain Image 1"
+    class="floating-image mouse-follow"
+    style="top: 10%; left: 5%"
+  />
+  <img
+    src="https://plus.unsplash.com/premium_photo-1672115680958-54438df0ab82?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=884"
+    alt="Floating Mountain Image 2"
+    class="floating-image mouse-follow"
+    style="top: 75%; left: 80%"
+  />
+  <img
+    src="https://images.unsplash.com/photo-1494806812796-244fe51b774d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=867"
+    alt="Floating Mountain Image 3"
+    class="floating-image mouse-follow"
+    style="top: 40%; left: 60%"
+  />
+  <img
+    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870"
+    alt="Floating Mountain Image 4"
+    class="floating-image mouse-follow"
+    style="top: 55%; left: 10%"
+  />
+  <img
+    src="https://plus.unsplash.com/premium_photo-1672115680958-54438df0ab82?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=884"
+    alt="Floating Mountain Image 5"
+    class="floating-image mouse-follow"
+    style="top: 25%; left: 90%"
+  />
+  <img
+    src="https://images.unsplash.com/photo-1494806812796-244fe51b774d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=867"
+    alt="Floating Mountain Image 6"
+    class="floating-image mouse-follow"
+    style="top: 85%; left: 40%"
+  />
+  <img
+    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870"
+    alt="Floating Mountain Image 7"
+    class="floating-image mouse-follow"
+    style="top: 20%; left: 30%"
+  />
+  <img
+    src="https://plus.unsplash.com/premium_photo-1672115680958-54438df0ab82?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=884"
+    alt="Floating Mountain Image 8"
+    class="floating-image mouse-follow"
+    style="top: 60%; left: 70%"
+  />
 
-      .hero-container header .logo {
-        color: #8a2435;
-        font-weight: 700;
-        text-decoration: none;
-        font-size: 2em;
-      }
+  <!-- Group 2: Randomly animating images (7 images) -->
+  <img
+    src="https://images.unsplash.com/photo-1494806812796-244fe51b774d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=867"
+    alt="Floating Mountain Image 9"
+    class="floating-image"
+    style="
+      top: 5%;
+      left: 30%;
+      animation-name: floatDriftTLBR;
+      animation-duration: 20s;
+      animation-delay: 0s;
+    "
+  />
+  <img
+    src="https://images.unsplash.com/photo-1494806812796-244fe51b774d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=867"
+    alt="Floating Mountain Image 9"
+    class="floating-image"
+    style="
+      top: 5%;
+      left: 30%;
+      animation-name: floatDriftTLBR;
+      animation-duration: 20s;
+      animation-delay: 0s;
+    "
+  />
+  <img
+    src="https://images.unsplash.com/photo-1494806812796-244fe51b774d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=867"
+    alt="Floating Mountain Image 9"
+    class="floating-image"
+    style="
+      top: 5%;
+      left: 30%;
+      animation-name: floatDriftTLBR;
+      animation-duration: 20s;
+      animation-delay: 0s;
+    "
+  />
+  <img
+    src="https://images.unsplash.com/photo-1494806812796-244fe51b774d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=867"
+    alt="Floating Mountain Image 9"
+    class="floating-image"
+    style="
+      top: 5%;
+      left: 30%;
+      animation-name: floatDriftTLBR;
+      animation-duration: 20s;
+      animation-delay: 0s;
+    "
+  />
+  <img
+    src="https://images.unsplash.com/photo-1494806812796-244fe51b774d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=867"
+    alt="Floating Mountain Image 9"
+    class="floating-image"
+    style="
+      top: 5%;
+      left: 30%;
+      animation-name: floatDriftTLBR;
+      animation-duration: 20s;
+      animation-delay: 0s;
+    "
+  />
+  <img
+    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870"
+    alt="Floating Mountain Image 10"
+    class="floating-image"
+    style="
+      top: 80%;
+      left: 5%;
+      animation-name: floatDriftTRBL;
+      animation-duration: 24s;
+      animation-delay: 2s;
+    "
+  />
+  <img
+    src="https://plus.unsplash.com/premium_photo-1672115680958-54438df0ab82?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=884"
+    alt="Floating Mountain Image 11"
+    class="floating-image"
+    style="
+      top: 15%;
+      left: 95%;
+      animation-name: floatDriftTLBR;
+      animation-duration: 18s;
+      animation-delay: 4s;
+    "
+  />
+  <img
+    src="https://images.unsplash.com/photo-1494806812796-244fe51b774d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=867"
+    alt="Floating Mountain Image 12"
+    class="floating-image"
+    style="
+      top: 70%;
+      left: 50%;
+      animation-name: floatDriftTRBL;
+      animation-duration: 22s;
+      animation-delay: 6s;
+    "
+  />
+  <img
+    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870"
+    alt="Floating Mountain Image 13"
+    class="floating-image"
+    style="
+      top: 35%;
+      left: 20%;
+      animation-name: floatDriftTLBR;
+      animation-duration: 16s;
+      animation-delay: 8s;
+    "
+  />
+  <img
+    src="https://plus.unsplash.com/premium_photo-1672115680958-54438df0ab82?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=884"
+    alt="Floating Mountain Image 14"
+    class="floating-image"
+    style="
+      top: 90%;
+      left: 70%;
+      animation-name: floatDriftTRBL;
+      animation-duration: 19s;
+      animation-delay: 10s;
+    "
+  />
+  <img
+    src="https://images.unsplash.com/photo-1494806812796-244fe51b774d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=867"
+    alt="Floating Mountain Image 15"
+    class="floating-image"
+    style="
+      top: 50%;
+      left: 5%;
+      animation-name: floatDriftTLBR;
+      animation-duration: 25s;
+      animation-delay: 12s;
+    "
+  />
+</div>
 
-      .hero-container header ul {
-        display: flex;
-      }
+<!-- Main Glassmorphism Content Card - Split 50% info, 50% slider -->
+<div class="main-content-container">
+  <!-- LEFT HALF: Info Section (Title, Description, Buttons, Social) -->
+  <div class="info-section">
+    <h1>Discover the World, Submit Your Place</h1>
 
-      .hero-container header ul li {
-        list-style: none;
-        margin: 0 10px;
-      }
+    <p>
+      Dilkash is a hub for the most attractive, charming, and hidden gems across
+      the globe. We believe the best places are shared by the people who love
+      them. Explore our curated collection or inspire others by submitting your
+      own favorite spot!
+    </p>
 
-      .hero-container header ul li a {
-        text-decoration: none;
-        font-weight: 500;
-        color: #8a2435;
-        padding: 8px 15px;
-        border-radius: 25px;
-      }
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <a href="#submit" class="primary-btn">
+        <i data-lucide="map-pin"></i>
+        Submit a New Place
+      </a>
+      <a href="#explore" class="secondary-btn">
+        <i data-lucide="compass"></i>
+        Explore Hidden Gems
+      </a>
+    </div>
 
-      .hero-container header ul li a:hover,
-      .hero-container header ul li a.active {
-        background: #fff;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      }
+    <!-- Social Media Links -->
+    <div class="social-icons">
+      <a href="#"><i data-lucide="facebook"></i></a>
+      <a href="#"><i data-lucide="instagram"></i></a>
+      <a href="#"><i data-lucide="twitter"></i></a>
+      <a href="#"><i data-lucide="mail"></i></a>
+    </div>
+  </div>
 
-      .hero-container .content {
-        transform: translateX(-100px);
-        max-width: 700px;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        border-radius: 20px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-top: 1px solid rgba(255, 255, 255, 0.5);
-        border-left: 1px solid rgba(255, 255, 255, 0.5);
-        padding: 30px;
-        padding-left: 110px;
-        margin-top: 10px;
-      }
-
-      .hero-container .content h2 {
-        font-size: 3em;
-        color: #8a2435;
-      }
-
-      .hero-container .content p {
-        font-size: 1.2em;
-        color: #8a2435;
-      }
-
-      .hero-container .content a {
-        display: inline-block;
-        padding: 15px 30px;
-        background: #fff;
-        color: #8a2435;
-        margin-top: 20px;
-        border-radius: 30px;
-        font-size: 1.2em;
-        text-decoration: none;
-      }
-
-      .hero-container .hero-img {
-        max-width: 400px;
-        animation: animate2 5s linear infinite;
-      }
-
-      @keyframes animate2 {
-        0%,
-        100% {
-          transform: translateY(20px);
-        }
-        50% {
-          transform: translateY(70px);
-        }
-      }
-
-      .hero-container .social {
-        position: absolute;
-        right: -25px;
-      }
-
-      .hero-container .social li {
-        list-style: none;
-      }
-
-      .hero-container .social li a {
-        text-decoration: none;
-        width: 50px;
-        height: 50px;
-        background: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        margin: 5px 0;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .hero-container .social li a img {
-        transform: scale(0.6);
-        transition: 0.5s;
-      }
-
-      .hero-container .social li:hover a img {
-        transform: scale(0.6) rotate(360deg);
-      }
-
-      .hero-container .copyright {
-        position: absolute;
-        bottom: 30px;
-        left: 50px;
-        color: #8a2435;
-      }
-    </style>
-  </head>
-  <body>
-    <section class="hero">
-      <div class="hero-container">
-        <header>
-          <a href="#" class="logo">Logo</a>
-          <ul>
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Team</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </header>
-        <div class="content">
-          <h2>Glassmorphism UI</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
-            atque enim, vel quisquam repellat fugiat itaque amet harum
-            asperiores, quibusdam aspernatur! Placeat alias ex neque, labore
-            esse rem porro temporibus iusto nam, quo laborum laudantium.
-            Quibusdam dolorem eos itaque? Natus consectetur labore eos
-            quibusdam? Nobis aliquid quis molestiae, voluptates reprehenderit
-            placeat excepturi veniam dicta consequuntur.
-          </p>
-          <a href="#">Read more </a>
-        </div>
-
-        <div class="hero-img">
-          <img src="images/character.png" alt="" />
-        </div>
-
-        <div class="social">
-          <ul>
-            <li>
-              <a href="#"><img src="images/facebook.png" alt="" /></a>
-            </li>
-            <li>
-              <a href="#"><img src="images/instagram.png" alt="" /></a>
-            </li>
-            <li>
-              <a href="#"><img src="images/twitter.png" alt="" /></a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="copyright">
-          &copy; 2025 Md. Kaif Khan. All rights reserved.
-        </div>
+  <!-- RIGHT HALF: Auto-Scrolling Slider Section -->
+  <div class="slider-section">
+    <div class="slides-wrapper">
+      <!-- Slide 1: Venice Canals -->
+      <div
+        class="slide"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1531275090635-95f0974c3073?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
+        "
+      >
+        <div class="slide-text">Venice Canals, Italy</div>
       </div>
-    </section>
-  </body>
-</html>
+
+      <!-- Slide 2: Kyoto Temple -->
+      <div
+        class="slide"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1531275090635-95f0974c3073?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
+        "
+      >
+        <div class="slide-text">Kiyomizu-dera, Kyoto, Japan</div>
+      </div>
+
+      <!-- Slide 3: Mountain Landscape -->
+      <div
+        class="slide"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1531275090635-95f0974c3073?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
+        "
+      >
+        <div class="slide-text">Dolomites Panorama, Italy</div>
+      </div>
+
+      <!-- Slide 4: Coastal Town -->
+      <div
+        class="slide"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1531275090635-95f0974c3073?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
+        "
+      >
+        <div class="slide-text">Cinque Terre Coastline</div>
+      </div>
+    </div>
+  </div>
+</div>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    lucide.createIcons();
+
+    // --- MOUSE FOLLOW EFFECT (GSAP) ---
+    const mouseFollowImages = document.querySelectorAll(
+      ".floating-image.mouse-follow"
+    );
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let time = 0; // Global time variable for sine wave jiggle
+
+    // Data structure to hold custom, unique properties for each image
+    const imageStates = [];
+
+    // 1. Initialization and Setup
+    mouseFollowImages.forEach((img, index) => {
+      let offsetX, offsetY;
+
+      // Group 1 (Index 0 to 3): Tighter Cluster (range +/- 150px)
+      if (index < 4) {
+        offsetX = Math.random() * 300 - 150;
+        offsetY = Math.random() * 300 - 150;
+      }
+      // Group 2 (Index 4 to 7): Looser Cluster (range +/- 400px)
+      else {
+        offsetX = Math.random() * 800 - 400;
+        offsetY = Math.random() * 800 - 400;
+      }
+
+      const initialRotation = Math.random() * 360;
+      const initialSkew = Math.random() * 10 - 5;
+
+      imageStates.push({
+        element: img,
+        offsetX: offsetX,
+        offsetY: offsetY,
+        jiggleFreqX: 0.5 + Math.random() * 0.5,
+        jiggleFreqY: 0.6 + Math.random() * 0.4,
+        jiggleAmp: 25 + Math.random() * 25,
+        initialRotation: initialRotation,
+        initialSkewX: initialSkew,
+        initialSkewY: initialSkew * 0.5,
+        transformOrigin: "center center",
+      });
+
+      gsap.set(img, {
+        x: offsetX,
+        y: offsetY,
+        rotation: initialRotation,
+        skewX: initialSkew,
+        skewY: initialSkew * 0.5,
+        transformOrigin: "center center",
+      });
+    });
+
+    // 2. Mouse Event Listener
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // 3. Animation Loop using GSAP Ticker
+    gsap.ticker.add(() => {
+      time += 0.005;
+
+      imageStates.forEach((state) => {
+        // Jiggle (Water Current)
+        const jiggleX = Math.sin(time * state.jiggleFreqX) * state.jiggleAmp;
+        const jiggleY = Math.cos(time * state.jiggleFreqY) * state.jiggleAmp;
+
+        // Target Calculation
+        const targetPosX = mouseX + state.offsetX + jiggleX;
+        const targetPosY = mouseY + state.offsetY + jiggleY;
+
+        // Rotational Drift
+        const rotationDrift = Math.sin(time * 0.1) * 10;
+        const skewDrift = Math.cos(time * 0.15) * 2;
+
+        // Animate with GSAP
+        gsap.to(state.element, {
+          x: targetPosX - state.element.offsetWidth / 2,
+          y: targetPosY - state.element.offsetHeight / 2,
+          rotation: state.initialRotation + rotationDrift,
+          skewX: state.initialSkewX + skewDrift,
+          skewY: state.initialSkewY - skewDrift,
+
+          duration: 1.5,
+          ease: "power1.out",
+          overwrite: "auto",
+        });
+      });
+    });
+
+    // --- AUTO-SCROLL SLIDER LOGIC ---
+    const sliderWrapper = document.querySelector(".slides-wrapper");
+    const slides = document.querySelectorAll(".slide");
+    let currentIndex = 0;
+    const slideCount = slides.length;
+    const slideDuration = 2000; // 1 second per slide
+
+    function nextSlide() {
+      // Increment the index, wrapping around to 0
+      currentIndex = (currentIndex + 1) % slideCount;
+
+      // Calculate the translation required: -100% moves to the next slide
+      // Use GSAP for smooth, performant animation
+      gsap.to(sliderWrapper, {
+        x: `-${currentIndex * 100}%`,
+        duration: 0.8, // Slide transition duration
+        ease: "power2.inOut",
+      });
+    }
+
+    // Start the auto-scroll interval after the window loads
+    window.addEventListener("load", () => {
+      setInterval(nextSlide, slideDuration);
+    });
+
+    // Ensure the slider repositions correctly on resize
+    window.addEventListener("resize", () => {
+      // Immediately snap to the current position without animation
+      gsap.set(sliderWrapper, {
+        x: `-${currentIndex * 100}%`,
+      });
+    });
+  });
+</script>

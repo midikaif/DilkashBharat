@@ -2,6 +2,12 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+nav{
+  position: relative;
+  z-index: 999;
+}
+
+
 /* ============================ */
 
 /* 2. Glassmorphism Effect for Navbar (.glass-nav) */
@@ -13,7 +19,6 @@ body {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-
   border-radius: 16px; /* rounded-2xl */
   padding: 1rem; /* p-4 */
   transition: all 0.3s;
@@ -41,7 +46,7 @@ body {
   font-size: 2rem; /* Adjusted for better mobile fit */
   font-weight: 800; /* font-extrabold */
   color: white; /* text-white */
-  letter-spacing: -0.025em; /* tracking-tight */
+  letter-spacing: 0.075em; /* tracking-tight */
   text-decoration: none;
 }
 
@@ -173,8 +178,13 @@ body {
     width: auto; /* md:w-auto */
   }
 }
+
+
+
+
+
 /* ======================== */
-.hero {
+/* .hero {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,7 +194,7 @@ body {
   background-position: center;
   background-attachment: fixed;
   padding: 50px;
-}
+} */
 
 .hero-container {
   position: relative;
@@ -249,7 +259,7 @@ body {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.hero-container .content {
+ .content {
   transform: translateX(-100px);
   max-width: 700px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -263,17 +273,17 @@ body {
   margin-top: 10px;
 }
 
-.hero-container .content h2 {
+ .content h2 {
   font-size: 3em;
   color: #8a2435;
 }
 
-.hero-container .content p {
+ .content p {
   font-size: 1.2em;
   color: #8a2435;
 }
 
-.hero-container .content a {
+ .content a {
   display: inline-block;
   padding: 15px 30px;
   background: #fff;
@@ -284,7 +294,7 @@ body {
   text-decoration: none;
 }
 
-.hero-container .hero-img {
+ .hero-img {
   max-width: 400px;
   animation: animate2 5s linear infinite;
 }
