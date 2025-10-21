@@ -3,7 +3,6 @@
 <section class="hero"></section>
 <!-- Background Floating Images (Unchanged) -->
 <div class="floating-mountain-container overflow-hidden">
-
   <!-- Group 1: Mouse-following images (8 images) -->
   <img
     src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870"
@@ -224,178 +223,42 @@
   </div>
 
   <!-- RIGHT HALF: Auto-Scrolling Slider Section -->
-  <div class="slider-section">
-    <div class="slides-wrapper">
-      <!-- Slide 1: Venice Canals -->
-      <div
-        class="slide"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1531275090635-95f0974c3073?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
-        "
-      >
-        <div class="slide-text">Venice Canals, Italy</div>
+  <div class="carousel-wrapper">
+    <div class="carousel-container">
+      <!-- The wrapper that GSAP will translate up/down -->
+      <div class="slides-wrapper">
+        <% for(let place of places){ %>
+        <!-- Slide 1 -->
+        <a href="/places/<%=place._id%>">
+          <div
+            class="slide"
+            style="
+              background-image: url(<%=place.images.length?place?.images[0]?.url:'https://placehold.co/400x450/6EE7B7/000000?text=' + encodeURIComponent(
+                  place.title
+                )%>);
+            "
+          >
+            <div class="slide-content">
+              <h2><%= place.images.length ? place.title : '' %></h2>
+              <p><%= place.description %></p>
+            </div>
+          </div>
+        </a>
+        <% } %>
       </div>
 
-      <!-- Slide 2: Kyoto Temple -->
-      <div
-        class="slide"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1531275090635-95f0974c3073?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
-        "
-      >
-        <div class="slide-text">Kiyomizu-dera, Kyoto, Japan</div>
-      </div>
-
-      <!-- Slide 3: Mountain Landscape -->
-      <div
-        class="slide"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1531275090635-95f0974c3073?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
-        "
-      >
-        <div class="slide-text">Dolomites Panorama, Italy</div>
-      </div>
-
-      <!-- Slide 4: Coastal Town -->
-      <div
-        class="slide"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1531275090635-95f0974c3073?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870');
-        "
-      >
-        <div class="slide-text">Cinque Terre Coastline</div>
+      <!-- Navigation Buttons -->
+      <div class="carousel-nav">
+        <button id="prevBtn" class="nav-button" aria-label="Previous Slide">
+          <i data-lucide="chevron-up"></i>
+        </button>
+        <button id="nextBtn" class="nav-button" aria-label="Next Slide">
+          <i data-lucide="chevron-down"></i>
+        </button>
       </div>
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <script src="/js/home.js"></script>
 </div>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    lucide.createIcons();
-
-    // --- MOUSE FOLLOW EFFECT (GSAP) ---
-    const mouseFollowImages = document.querySelectorAll(
-      ".floating-image.mouse-follow"
-    );
-
-    let mouseX = 0;
-    let mouseY = 0;
-    let time = 0; // Global time variable for sine wave jiggle
-
-    // Data structure to hold custom, unique properties for each image
-    const imageStates = [];
-
-    // 1. Initialization and Setup
-    mouseFollowImages.forEach((img, index) => {
-      let offsetX, offsetY;
-
-      // Group 1 (Index 0 to 3): Tighter Cluster (range +/- 150px)
-      if (index < 4) {
-        offsetX = Math.random() * 300 - 150;
-        offsetY = Math.random() * 300 - 150;
-      }
-      // Group 2 (Index 4 to 7): Looser Cluster (range +/- 400px)
-      else {
-        offsetX = Math.random() * 800 - 400;
-        offsetY = Math.random() * 800 - 400;
-      }
-
-      const initialRotation = Math.random() * 360;
-      const initialSkew = Math.random() * 10 - 5;
-
-      imageStates.push({
-        element: img,
-        offsetX: offsetX,
-        offsetY: offsetY,
-        jiggleFreqX: 0.5 + Math.random() * 0.5,
-        jiggleFreqY: 0.6 + Math.random() * 0.4,
-        jiggleAmp: 25 + Math.random() * 25,
-        initialRotation: initialRotation,
-        initialSkewX: initialSkew,
-        initialSkewY: initialSkew * 0.5,
-        transformOrigin: "center center",
-      });
-
-      gsap.set(img, {
-        x: offsetX,
-        y: offsetY,
-        rotation: initialRotation,
-        skewX: initialSkew,
-        skewY: initialSkew * 0.5,
-        transformOrigin: "center center",
-      });
-    });
-
-    // 2. Mouse Event Listener
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
-    // 3. Animation Loop using GSAP Ticker
-    gsap.ticker.add(() => {
-      time += 0.005;
-
-      imageStates.forEach((state) => {
-        // Jiggle (Water Current)
-        const jiggleX = Math.sin(time * state.jiggleFreqX) * state.jiggleAmp;
-        const jiggleY = Math.cos(time * state.jiggleFreqY) * state.jiggleAmp;
-
-        // Target Calculation
-        const targetPosX = mouseX + state.offsetX + jiggleX;
-        const targetPosY = mouseY + state.offsetY + jiggleY;
-
-        // Rotational Drift
-        const rotationDrift = Math.sin(time * 0.1) * 10;
-        const skewDrift = Math.cos(time * 0.15) * 2;
-
-        // Animate with GSAP
-        gsap.to(state.element, {
-          x: targetPosX - state.element.offsetWidth / 2,
-          y: targetPosY - state.element.offsetHeight / 2,
-          rotation: state.initialRotation + rotationDrift,
-          skewX: state.initialSkewX + skewDrift,
-          skewY: state.initialSkewY - skewDrift,
-
-          duration: 1.5,
-          ease: "power1.out",
-          overwrite: "auto",
-        });
-      });
-    });
-
-    // --- AUTO-SCROLL SLIDER LOGIC ---
-    const sliderWrapper = document.querySelector(".slides-wrapper");
-    const slides = document.querySelectorAll(".slide");
-    let currentIndex = 0;
-    const slideCount = slides.length;
-    const slideDuration = 2000; // 1 second per slide
-
-    function nextSlide() {
-      // Increment the index, wrapping around to 0
-      currentIndex = (currentIndex + 1) % slideCount;
-
-      // Calculate the translation required: -100% moves to the next slide
-      // Use GSAP for smooth, performant animation
-      gsap.to(sliderWrapper, {
-        x: `-${currentIndex * 100}%`,
-        duration: 0.8, // Slide transition duration
-        ease: "power2.inOut",
-      });
-    }
-
-    // Start the auto-scroll interval after the window loads
-    window.addEventListener("load", () => {
-      setInterval(nextSlide, slideDuration);
-    });
-
-    // Ensure the slider repositions correctly on resize
-    window.addEventListener("resize", () => {
-      // Immediately snap to the current position without animation
-      gsap.set(sliderWrapper, {
-        x: `-${currentIndex * 100}%`,
-      });
-    });
-  });
-</script>

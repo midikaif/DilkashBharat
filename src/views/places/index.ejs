@@ -30,7 +30,7 @@
           class="object-cover w-full h-full rounded-t-xl md:rounded-l-xl md:rounded-tr-none"
           src="<%= place.imageUrl %>"
           alt="Image of <%= place.title %>"
-          onerror="this.onerror=null; this.src='https://placehold.co/600x400/6EE7B7/000000?text=Image+Unavailable'"
+          onerror="this.onerror=null; this.src='https://placehold.co/600x400/6EE7B7/000000?text=<%= place.title%>'"
         />
       </div>
 

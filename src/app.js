@@ -11,6 +11,7 @@ const sanitizeV5 = require("./utils/mongoSanitizeV5.js");
 const placesRoutes = require("./routes/places.routes");
 const authRoutes = require("./routes/auth.routes");
 const userModel = require("./models/user.model");
+const placesModel = require("./models/places.model");
 
 const app = express();
 app.set("query parser", "extended");
@@ -54,8 +55,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req,res)=>{
-  res.render('home/home');
+app.get('/', async (req,res)=>{
+  const places = await placesModel.find({}).limit(5);
+  res.render('home/home', { places });
 })
 
 app.use("/auth", authRoutes);
