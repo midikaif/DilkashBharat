@@ -2,18 +2,17 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-nav{
+nav {
   /* position: relative; */
   position: sticky;
   top: 10px;
   z-index: 99;
 }
 
-
 /* ============================ */
 
 /* 2. Glassmorphism Effect for Navbar (.glass-nav) */
-.glass{
+.glass {
   width: 100%;
   /* Glass properties */
   background-color: rgba(255, 255, 255, 0.15);
@@ -24,9 +23,10 @@ nav{
   border-radius: 16px; /* rounded-2xl */
   padding: 1rem; /* p-4 */
   transition: all 0.3s;
+  margin-top: auto;
 }
 
-.glass-dark{
+.glass-dark {
   width: 100%;
   /* Glass properties */
   background-color: rgba(0, 0, 0, 0.15);
@@ -39,7 +39,22 @@ nav{
   transition: all 0.3s;
 }
 
+/* NEW: Mobile Menu Toggle Button */
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: block; /* Show on mobile */
+}
 
+.menu-toggle .menu-icon {
+  width: 2rem;
+  height: 2rem;
+  /* Apply text-shadow fix to the icon as well */
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.7));
+}
 
 /* 3. Navbar Content Layout (.navbar-content) */
 .navbar-content {
@@ -47,7 +62,7 @@ nav{
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-
+  /* margin-bottom: -10px;  */
 }
 
 /* 4. Left Group (Logo + Places) */
@@ -56,7 +71,8 @@ nav{
   align-items: center;
   flex-wrap: wrap;
   gap: 1.5rem; /* space-x-6 */
-  margin-bottom: 1rem; /* mb-4 for mobile */
+  /* margin-bottom: 1rem;  */
+  /* mb-4 for mobile */
 }
 
 /* 5. Logo Styling (Mobile Default) */
@@ -66,10 +82,8 @@ nav{
   color: white; /* text-white */
   letter-spacing: 0.075em; /* tracking-tight */
   text-decoration: none;
-text-shadow: 
-        0 0 4px rgba(0, 0, 0, 0.7), /* Soft, dark glow */
-        0 0 1px rgba(0, 0, 0, 0.5);  /* Sharper dark outline */
-  
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7),
+    /* Soft, dark glow */ 0 0 1px rgba(0, 0, 0, 0.5); /* Sharper dark outline */
 }
 
 /* 6. Right Group (Register, Login, Search) */
@@ -82,10 +96,17 @@ text-shadow:
   font-size: 1.125rem; /* text-lg */
   font-weight: 500; /* font-medium */
   width: 100%; /* Ensures the right group uses full mobile width */
-  text-shadow: 
-        0 0 4px rgba(0, 0, 0, 0.7), /* Soft, dark glow */
-        0 0 1px rgba(0, 0, 0, 0.5);  /* Sharper dark outline */
-  
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7),
+    /* Soft, dark glow */ 0 0 1px rgba(0, 0, 0, 0.5); /* Sharper dark outline */
+
+  overflow: hidden; /* Hides content outside of max-height */
+  max-height: 0; /* Default: collapsed (hidden) */
+  transition: max-height 0.4s ease-in-out; /* Smooth collapse transition */
+}
+
+.nav-right.open {
+  /* Set a height large enough to contain all content */
+  max-height: 500px; /* Adjust this value if content is taller */
 }
 
 /* 7. Standard Links (.nav-link) */
@@ -101,10 +122,9 @@ text-shadow:
   color: white;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
 }
-
 
 /* 8. Active Link (Places - Pill Style) */
 .nav-link.active {
@@ -171,11 +191,22 @@ text-shadow:
   cursor: pointer;
 }
 
-/* 10. Responsive Adjustments (md: breakpoint equivalent - 768px) */
-@media (min-width: 768px) {
+/* 10. Responsive Adjustments (md: breakpoint equivalent - 900px) */
+@media (min-width: 900px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .navbar-content {
+    flex-direction: row; /* Desktop: horizontal */
+    justify-content: space-between; /* Desktop: space between left and right */
+    align-items: center;
+  }
+
   .glass-nav {
     padding: 1.5rem; /* md:p-6 */
   }
+
   .nav-left {
     margin-bottom: 0; /* md:mb-0 */
   }
@@ -187,6 +218,10 @@ text-shadow:
 
   /* Restore desktop layout for right group */
   .nav-right {
+    display: flex; /* Makes left/right groups line up */
+    max-height: none; /* Desktop: Always visible */
+    justify-content: flex-end; /* Push content to the right */
+    width: auto;
     flex-direction: row; /* md:flex-row */
     align-items: center; /* md:items-center */
     gap: 1.5rem; /* md:space-x-6 */
@@ -204,10 +239,6 @@ text-shadow:
     width: auto; /* md:w-auto */
   }
 }
-
-
-
-
 
 /* ======================== */
 /* .hero {
@@ -285,7 +316,7 @@ text-shadow:
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
- .content {
+.content {
   transform: translateX(-100px);
   max-width: 700px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -299,17 +330,17 @@ text-shadow:
   margin-top: 10px;
 }
 
- .content h2 {
+.content h2 {
   font-size: 3em;
   color: #8a2435;
 }
 
- .content p {
+.content p {
   font-size: 1.2em;
   color: #8a2435;
 }
 
- .content a {
+.content a {
   display: inline-block;
   padding: 15px 30px;
   background: #fff;
@@ -320,7 +351,7 @@ text-shadow:
   text-decoration: none;
 }
 
- .hero-img {
+.hero-img {
   max-width: 400px;
   animation: animate2 5s linear infinite;
 }
