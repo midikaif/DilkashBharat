@@ -6,15 +6,68 @@ maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 async function showPlaces(req, res) {
   try {
-    console.log(req.query);
-    const allPlaces = await placesModel.find({});
-    if (!allPlaces) {
-      throw new Error("No Places found!");
+    const searchQuery = req.query.q;
+
+    // --- 1. HANDLE INITIAL SEARCH REQUEST (WITH QUERY) ---
+    if (searchQuery) {
+      console.log(`Initial search query: ${searchQuery}`);
+
+      // a. Perform the search
+      const searchResults = await placesModel.find({
+        title: { $regex: searchQuery, $options: "i" },
+      });
+
+
+      // b. Store the results and a flag in the session
+      req.session.searchResults = searchResults;
+      req.session.hasSearched = true;
+
+      // c. REDIRECT to the clean URL /places
+      // This initiates a new GET request to /places, which hits this function again
+      return res.redirect("/places");
     }
 
-    res.render("places/index", { allPlaces });
+    // --- 2. HANDLE REGULAR LOAD or REDIRECTED LOAD ---
+
+    let placesToShow;
+    let isSearchDisplay = false; // Flag for template logic if needed
+
+    // Check if the session contains search results from the previous request
+    if (req.session.hasSearched) {
+      console.log("Serving search results from session.");
+
+      // a. Use the temporary search results
+      placesToShow = req.session.searchResults;
+      isSearchDisplay = true;
+
+      // b. CLEAN UP the session data immediately after using it.
+      // This ensures that the next refresh (F5) hits the 'else' block below.
+      delete req.session.searchResults;
+      delete req.session.hasSearched;
+    } else {
+      // This block runs on initial page load AND on any subsequent browser refresh (F5)
+      console.log("Serving all places (Default view).");
+
+      // Fetch ALL places (by using an empty regex or omitting the filter)
+      placesToShow = await placesModel.find({});
+    }
+
+    // Check if data was found (optional check, better handled by empty array)
+    if (!placesToShow) {
+      // Note: If no places are found, it's better to render an empty array
+      // or an error page, rather than throwing a generic 'No Places found!'
+      // especially if the search results were empty.
+      placesToShow = [];
+    }
+
+    // Render the view with the determined set of places
+
+    res.render("places/index", { allPlaces: placesToShow, isSearchDisplay });
   } catch (e) {
-    console.log(e);
+    console.error(e);
+    // You might want to render an error page here
+    // res.status(500).send("An error occurred.");
+    req.flash("error", "An error occurred while fetching places.");
   }
 }
 

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("Flash message script loaded.");
   const alert = document.getElementById("successAlert");
   const closeBtn = document.getElementById("closeAlertBtn");
 

@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    const carouselContainer = document.querySelector(".carousel-container");
+    const carouselContainer = document.querySelector(".vertical-carousel-container");
     const sliderWrapper = document.querySelector(".slides-wrapper");
     const slides = document.querySelectorAll(".slide");
     const prevBtn = document.getElementById("prevBtn");
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Get the height of one slide from the container's computed style
       // This is crucial for accurate pixel-based movement with GSAP.
-      let slideHeight = carouselContainer.offsetHeight;
+      let slideHeight = carouselContainer?.offsetHeight;
 
       // Function to update the carousel position
       function goToSlide(index) {

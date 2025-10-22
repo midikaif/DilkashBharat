@@ -3,8 +3,10 @@ body {
 }
 
 nav{
-  position: relative;
-  z-index: 999;
+  /* position: relative; */
+  position: sticky;
+  top: 10px;
+  z-index: 99;
 }
 
 
@@ -24,12 +26,28 @@ nav{
   transition: all 0.3s;
 }
 
+.glass-dark{
+  width: 100%;
+  /* Glass properties */
+  background-color: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.15);
+  border-radius: 16px; /* rounded-2xl */
+  padding: 1rem; /* p-4 */
+  transition: all 0.3s;
+}
+
+
+
 /* 3. Navbar Content Layout (.navbar-content) */
 .navbar-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+
 }
 
 /* 4. Left Group (Logo + Places) */
@@ -48,6 +66,10 @@ nav{
   color: white; /* text-white */
   letter-spacing: 0.075em; /* tracking-tight */
   text-decoration: none;
+text-shadow: 
+        0 0 4px rgba(0, 0, 0, 0.7), /* Soft, dark glow */
+        0 0 1px rgba(0, 0, 0, 0.5);  /* Sharper dark outline */
+  
 }
 
 /* 6. Right Group (Register, Login, Search) */
@@ -60,6 +82,10 @@ nav{
   font-size: 1.125rem; /* text-lg */
   font-weight: 500; /* font-medium */
   width: 100%; /* Ensures the right group uses full mobile width */
+  text-shadow: 
+        0 0 4px rgba(0, 0, 0, 0.7), /* Soft, dark glow */
+        0 0 1px rgba(0, 0, 0, 0.5);  /* Sharper dark outline */
+  
 }
 
 /* 7. Standard Links (.nav-link) */

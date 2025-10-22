@@ -1,8 +1,8 @@
 <% layout('layouts/boilerplate')%>
+<div class="glass max-w-7xl mx-auto">
 
 <div id="map" style="width: 100%; height: 500px; border-radius: 20px; opacity: .95;"></div>
 
-<div class="glass max-w-7xl mx-auto">
   <!-- Title -->
   <h1
     class="text-6xl text-center py-6 font-extrabold text-white drop-shadow-lg"
@@ -22,7 +22,7 @@
   <div class="space-y-6 p-20 overflow-x-hidden max-w-screen">
     <% for(let place of allPlaces){ %>
     <a
-      href="/places/<%= place.id %>"
+      href="/places/<%= place._id %>"
       class="dynamic-card flex flex-col md:flex-row w-full rounded-xl shadow-lg overflow-hidden transition duration-300 backdrop-blur-md bg-white/20 border border-solid border-white/30 hover:shadow-2xl group"
     >
       <div class="card-img-box w-full md:w-2/5 lg:w-1/3">
@@ -30,7 +30,7 @@
           class="object-cover w-full h-full rounded-t-xl md:rounded-l-xl md:rounded-tr-none"
           src="<%= place.imageUrl %>"
           alt="Image of <%= place.title %>"
-          onerror="this.onerror=null; this.src='https://placehold.co/600x400/6EE7B7/000000?text=<%= place.title%>'"
+          onerror="this.onerror=null; this.src='https://placehold.co/600x400/6EE7B7/000000?text=<%= place.title %>'"
         />
       </div>
 

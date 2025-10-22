@@ -17,43 +17,45 @@
       <!-- Standard Link - Login -->
       <a href="/auth/login" class="nav-link"> Login </a>
 
-      <!-- Search Bar -->
-      <div class="search-bar-container">
-        <!-- Search Icon -->
-        <div class="search-icon">
-          <i data-lucide="search"></i>
+      <form action="/places" >
+        <!-- Search Bar -->
+        <div class="search-bar-container">
+          <!-- Search Icon -->
+          <div class="search-icon">
+            <i data-lucide="search"></i>
+          </div>
+          <!-- Input Field -->
+          <input type="search" placeholder="Search..." class="search-input" name="q"/>
         </div>
-        <!-- Input Field -->
-        <input type="search" placeholder="Search..." class="search-input" />
-      </div>
+      </form>
     </div>
   </div>
 </nav>
 
- <script>
-        lucide.createIcons();
-    
- document.addEventListener('DOMContentLoaded', () => {
-            // Select all navigable links
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            // Function to handle link clicks
-            navLinks.forEach(link => {
-                link.addEventListener('click', (event) => {
-                    // Stop default action and prevent page jump for demonstration links
-                    
-                    // 1. Remove 'active' class from all links
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    
-                    // 2. Add 'active' class to the clicked link
-                    event.currentTarget.classList.add('active');
-                });
-            });
+<script>
+  lucide.createIcons();
 
-            // Set 'Places' as active by default on load
-            const defaultActiveLink = document.getElementById('places-link');
-            if (defaultActiveLink) {
-                defaultActiveLink.classList.add('active');
-            }
-        });    
+  document.addEventListener("DOMContentLoaded", () => {
+    // Select all navigable links
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    // Function to handle link clicks
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        // Stop default action and prevent page jump for demonstration links
+
+        // 1. Remove 'active' class from all links
+        navLinks.forEach((l) => l.classList.remove("active"));
+
+        // 2. Add 'active' class to the clicked link
+        event.currentTarget.classList.add("active");
+      });
+    });
+
+    // Set 'Places' as active by default on load
+    const defaultActiveLink = document.getElementById("places-link");
+    if (defaultActiveLink) {
+      defaultActiveLink.classList.add("active");
+    }
+  });
 </script>

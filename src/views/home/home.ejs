@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %>
-
+<div class='home-page'>
 <section class="hero"></section>
 <!-- Background Floating Images (Unchanged) -->
 <div class="floating-mountain-container overflow-hidden">
@@ -223,8 +223,8 @@
   </div>
 
   <!-- RIGHT HALF: Auto-Scrolling Slider Section -->
-  <div class="carousel-wrapper">
-    <div class="carousel-container">
+  <div class="vertical-carousel-wrapper">
+    <div class="vertical-carousel-container">
       <!-- The wrapper that GSAP will translate up/down -->
       <div class="slides-wrapper">
         <% for(let place of places){ %>
@@ -248,7 +248,7 @@
       </div>
 
       <!-- Navigation Buttons -->
-      <div class="carousel-nav">
+      <div class="vertical-carousel-nav">
         <button id="prevBtn" class="nav-button" aria-label="Previous Slide">
           <i data-lucide="chevron-up"></i>
         </button>
@@ -258,7 +258,8 @@
       </div>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <script src="/js/home.js"></script>
 </div>
