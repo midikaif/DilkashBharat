@@ -307,7 +307,7 @@ body {
 
 /* 8. Responsive Adjustments */
 @media (max-width: 992px) {
-  .main-content-container {
+    .main-content-container {
     height: auto; /* Allow height to adjust on smaller screens */
     min-height: 500px;
     flex-direction: column; /* Stack vertically on tablet/mobile */

@@ -127,7 +127,6 @@ async function addNewPlace(req, res) {
     }));
 
     await place.save();
-    console.log(place);
 
     if (!place) {
       req.flash("error", "Couldn't add a new place!");

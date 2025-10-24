@@ -50,10 +50,16 @@ nav {
 }
 
 .menu-toggle .menu-icon {
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   /* Apply text-shadow fix to the icon as well */
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.7));
+}
+
+/* Target the SVG element directly inside the button */
+.menu-toggle svg {
+    /* Ensures the SVG element does not capture the click event */
+    pointer-events: none;
 }
 
 /* 3. Navbar Content Layout (.navbar-content) */
@@ -73,6 +79,10 @@ nav {
   gap: 1.5rem; /* space-x-6 */
   /* margin-bottom: 1rem;  */
   /* mb-4 for mobile */
+}
+
+.nav-right .place-link{
+  display: none;
 }
 
 /* 5. Logo Styling (Mobile Default) */
@@ -130,7 +140,7 @@ nav {
 .nav-link.active {
   background-color: white; /* bg-white */
   color: #0f8c69; /* Updated text color to dark teal for contrast */
-  padding: 0.5rem 1.25rem; /* px-5 py-2 */
+  padding: .5rem 1.25rem; /* px-5 py-2 */
   border-radius: 9999px; /* rounded-full */
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-lg */
@@ -443,6 +453,7 @@ nav {
   transform: translateY(-100%) translateX(-50%);
   opacity: 0;
   pointer-events: none;
+  z-index: 999;
 }
 /* The 'show' class makes the alert visible and starts the timer */
 .alert-container.show {
@@ -606,3 +617,78 @@ nav {
   border-radius: 50%;
   animation: moveShape3 20s infinite alternate linear;
 }
+
+
+.places-container{
+  padding: 2rem 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-img-box{
+  flex: 0.45 1 0%; /* flex-grow: 2, flex-shrink: 1, flex-basis: 0% */
+
+}
+
+.card-content{
+  flex: 0.55 1 0%; /* flex-grow: 3, flex-shrink: 1, flex-basis: 0% */
+}
+
+
+@media (max-width: 1100px) {
+  .dynamic-card{
+    width: 75%;
+  }
+
+  .group{
+   flex-direction: column;
+  }
+
+  .card-content{
+    width: 100%;
+  }
+
+}
+
+
+/* Apply truncation for small screens (max-width: 767px) */
+@media (max-width: 767px) {
+  .places-title{
+    font-size: 2.5rem;
+  }
+
+  .places-container{
+    padding: 1.5rem;
+  }
+  
+  .card-content{
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-content h2{
+        font-size: 1.1rem; /* Slightly smaller title font */
+    }  
+  
+  /* Target the new class added to the description paragraph */
+    .card-description {
+        /* 1. Core WebKit properties for multi-line ellipsis */
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4; /* <-- Set the max number of lines you want to display */
+        overflow: hidden;
+
+        /* 2. OPTIONAL: If the card is initially small, reduce text size */
+        font-size: 0.95rem; 
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 400px) {
+  .nav-left .nav-link{
+    display: none;
+  }
+}
+

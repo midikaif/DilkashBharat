@@ -6,7 +6,6 @@ function registerForm(req, res) {
 
 async function register(req, res) {
   try {
-    console.log(req.body);
     const { firstName, lastName, email, username, password } = req.body;
     const fullName = { firstName, lastName };
     const userAlreadyExists = await userModel.findOne({ email });
@@ -26,6 +25,7 @@ async function register(req, res) {
     res.redirect("register");
   }
 }
+
 
 function loginForm(req, res) {
   res.render("users/login");

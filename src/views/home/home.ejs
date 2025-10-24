@@ -204,21 +204,29 @@
     <!-- Action Buttons -->
     <div class="action-buttons">
       <a href="#submit" class="primary-btn">
-        <i data-lucide="map-pin"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
         Submit a New Place
       </a>
       <a href="#explore" class="secondary-btn">
-        <i data-lucide="compass"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-compass-icon lucide-compass"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></svg>
         Explore Hidden Gems
       </a>
     </div>
 
     <!-- Social Media Links -->
     <div class="social-icons">
-      <a href="#"><i data-lucide="facebook"></i></a>
-      <a href="#"><i data-lucide="instagram"></i></a>
-      <a href="#"><i data-lucide="twitter"></i></a>
-      <a href="#"><i data-lucide="mail"></i></a>
+      <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook-icon lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram-icon lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+      </a>
+      <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter-icon lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+      </a>
+      <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+      </a>
     </div>
   </div>
 
@@ -233,10 +241,7 @@
           <div
             class="slide"
             style="
-              background-image: url(<%=place.images.length?place?.images[0]?.url:'https://placehold.co/400x450/6EE7B7/000000?text=' + encodeURIComponent(
-                  place.title
-                )%>);
-            "
+              background-image: url(<%=place.images.length?place?.images[0]?.url:'https://placehold.co/400x450/6EE7B7/000000?text='+encodeURIComponent(place.title)%>);"
           >
             <div class="slide-content">
               <h2><%= place.images.length ? place.title : '' %></h2>
@@ -250,16 +255,16 @@
       <!-- Navigation Buttons -->
       <div class="vertical-carousel-nav">
         <button id="prevBtn" class="nav-button" aria-label="Previous Slide">
-          <i data-lucide="chevron-up"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up-icon lucide-chevron-up"><path d="m18 15-6-6-6 6"/></svg>
         </button>
         <button id="nextBtn" class="nav-button" aria-label="Next Slide">
-          <i data-lucide="chevron-down"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
         </button>
       </div>
     </div>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <script src="/js/home.js"></script>
 </div>
