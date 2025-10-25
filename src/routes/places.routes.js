@@ -50,7 +50,10 @@ router
 
 router.get("/:id/edit", isLoggedIn, isAuthor, showEditPlace);
 
-router.route("/:id/reviews").get(redirectToReviews).post(isLoggedIn, addReview);
+router
+  .route("/:id/reviews")
+  .get(redirectToReviews)
+  .post(isLoggedIn, addReview);
 
 router.delete(
   "/:id/reviews/:reviewId",

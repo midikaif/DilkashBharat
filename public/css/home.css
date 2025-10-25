@@ -535,9 +535,9 @@ Carausel Slider Styles
   :root {
     --slide-height: 350px; /* Even smaller height on mobile */
   }
-  .carousel-container {
-    max-width: 95%; /* Allow it to breathe */
-  }
+  /* .carousel-container {
+    max-width: 95%; Allow it to breathe
+  } */
   .slide-content h2 {
     font-size: 1.4rem;
   }

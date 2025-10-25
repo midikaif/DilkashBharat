@@ -10,7 +10,6 @@ async function showPlaces(req, res) {
 
     // --- 1. HANDLE INITIAL SEARCH REQUEST (WITH QUERY) ---
     if (searchQuery) {
-      console.log(`Initial search query: ${searchQuery}`);
 
       // a. Perform the search
       const searchResults = await placesModel.find({
@@ -34,8 +33,7 @@ async function showPlaces(req, res) {
 
     // Check if the session contains search results from the previous request
     if (req.session.hasSearched) {
-      console.log("Serving search results from session.");
-
+     
       // a. Use the temporary search results
       placesToShow = req.session.searchResults;
       isSearchDisplay = true;
@@ -46,8 +44,7 @@ async function showPlaces(req, res) {
       delete req.session.hasSearched;
     } else {
       // This block runs on initial page load AND on any subsequent browser refresh (F5)
-      console.log("Serving all places (Default view).");
-
+     
       // Fetch ALL places (by using an empty regex or omitting the filter)
       placesToShow = await placesModel.find({});
     }
@@ -162,7 +159,7 @@ async function editPlace(req, res) {
       req.body.place.location,
       { limit: 1 }
     );
-    // console.log(geoData);
+    
     if (!geoData.features?.length) {
       req.flash(
         "error",
