@@ -47,11 +47,7 @@ body {
 .main-content-container {
   position: relative; /* Above the floating elements */
   z-index: 98;
-  /* height: 100%; */
   width: 100%;
-  /* max-width: 900px; */
-  /* Fixed height for a prominent desktop card */
-  /* top: 10rem; */
 
   /* Glassmorphism Effect */
   background: rgba(255, 255, 255, 0.15);

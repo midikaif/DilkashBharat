@@ -690,5 +690,10 @@ nav {
   .nav-left .nav-link{
     display: none;
   }
+
+  .nav-right .place-link{
+  display: block;
+}
+
 }
 
