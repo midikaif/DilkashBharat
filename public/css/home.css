@@ -22,28 +22,59 @@ body {
 }
 
 
-/* 2. Hero Section Styling */
-.hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  /* Background gradient matching the theme */
-  /* background: linear-gradient(180deg, #d33a59 0%, #8a2435 100%); */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  padding: 50px;
-  position: absolute; /* Context for floating elements */
-  overflow: hidden;
-  /* Prevent floating elements from causing scrollbars */
-  cursor: default; /* Indicate interactive elements are present */
+/* Floating Mountains/Images Animation */
+.floating-mountain-container {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* 3. Main Content Container (The large, central Glassmorphism card) */
+.floating-image {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  opacity: 0.5;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation-name: floatDriftTLBR;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+
+@keyframes floatDriftTRBL {
+  0% {
+    transform: translate(50vw, -50vh) rotate(10deg) scale(0.8);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50vw, 50vh) rotate(-10deg) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+@keyframes floatDriftTLBR {
+  0% {
+    transform: translate(-50vw, -50vh) rotate(-10deg) scale(0.8);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(50vw, 50vh) rotate(10deg) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+
+/* Main Content Container (The large, central Glassmorphism card) */
 .main-content-container {
   position: relative; /* Above the floating elements */
   z-index: 98;
@@ -78,7 +109,7 @@ body {
   padding-bottom: 0; /* Removed bottom padding */
   border-bottom: none; /* Removed horizontal border */
 
-  /* Center content vertically inside 50% side */
+  /* Center content verEtically inside 50% side */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -141,11 +172,6 @@ body {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
-.action-buttons a i[data-lucide] {
-  width: 18px; /* Slightly smaller icons */
-  height: 18px;
-}
-
 /* Primary Button Style (Submit Place) */
 .action-buttons .primary-btn {
   background: #fff;
@@ -200,106 +226,12 @@ body {
   transform: scale(1.1);
 }
 
-.social-icons a i[data-lucide] {
+.social-icons a svg {
   width: 18px;
   height: 18px;
 }
 
-/* 7. Floating Mountains/Images Animation (Unchanged) */
-.floating-mountain-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
 
-@keyframes floatDriftTRBL {
-  0% {
-    transform: translate(50vw, -50vh) rotate(10deg) scale(0.8);
-    opacity: 0.4;
-  }
-  100% {
-    transform: translate(-50vw, 50vh) rotate(-10deg) scale(1.2);
-    opacity: 0.7;
-  }
-}
-
-@keyframes floatDriftTLBR {
-  0% {
-    transform: translate(-50vw, -50vh) rotate(-10deg) scale(0.8);
-    opacity: 0.4;
-  }
-  100% {
-    transform: translate(50vw, 50vh) rotate(10deg) scale(1.2);
-    opacity: 0.7;
-  }
-}
-
-.floating-image {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 15px;
-  opacity: 0.5;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  animation-name: floatDriftTLBR;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-direction: alternate;
-}
-
-/* 9. Slider Section Specific Styles */
-.slider-section {
-  /* position: relative; */
-  overflow: hidden;
-  border-radius: 0 25px 25px 0; /* Rounded corners only on the right side for the visual split */
-  width: 100%;
-  height: 100%;
-}
-
-.slides-wrapper {
-  display: flex;
-  flex-direction: column; /* Horizontal sliding */
-  overflow: hidden;
-  position: relative;
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth transition */
-  height: 100%;
-  width: 100%;
-  gap: 10px;
-}
-
-.slide {
-  min-width: 100%; /* Each slide takes up the full width of the slider-section */
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  flex-shrink: 0;
-  /* Prevent slides from shrinking */
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: 20px;
-  overflow: hidden;
-  color: white;
-  border-radius: 20px;
-}
-
-.slide-text {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 8px 15px;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-}
 
 /* 8. Responsive Adjustments */
 @media (max-width: 992px) {
@@ -352,9 +284,6 @@ body {
 }
 
 @media (max-width: 576px) {
-  .hero {
-    padding: 20px;
-  }
   .main-content-container {
     padding: 30px 20px;
     border-radius: 20px;
@@ -384,24 +313,6 @@ body {
 Carausel Slider Styles
 */
 
-:root {
-  --primary-color: #3f51b5; /* Indigo */
-  --background-color: #1a237e; /* Dark Indigo */
-  --card-color: rgba(255, 255, 255, 0.1);
-  --slide-height: 450px; /* Reduced fixed height */
-}
-/* 
-        body {
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--background-color) 0%, #0d47a1 100%);
-            overflow: hidden; 
-            color: white;
-        } */
-
 /* 1. Carousel Container and Overall Wrapper */
 .vertical-carousel-wrapper {
   width: 100%;
@@ -417,7 +328,7 @@ Carausel Slider Styles
 .vertical-carousel-container {
   width: 90%; /* Restore responsive width */
   max-width: 400px; /* Restore max width for content visibility */
-  height: var(--slide-height); /* Use the intended fixed height */
+  height: 500px; /* Use the intended fixed height */
   position: relative;
   overflow: hidden;
 
@@ -430,20 +341,37 @@ Carausel Slider Styles
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* 2. Slides Wrapper: The container that moves vertically */
+
 .slides-wrapper {
   display: flex;
-  flex-direction: column; /* Stack slides vertically */
-  height: fit-content;
+  flex-direction: column; /* Horizontal sliding */
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth transition */
+  height: 100%;
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  gap: 10px;
 }
+
+.slide {
+  min-width: 100%; /* Each slide takes up the full width of the slider-section */
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  /* Prevent slides from shrinking */
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
 
 /* 3. Individual Slide */
 .slide {
-  min-height: var(--slide-height); /* MUST match container height */
+  color: white;
+  padding: 20px;
+  min-height: 500px; /* MUST match container height */
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -452,7 +380,8 @@ Carausel Slider Styles
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  /* padding: 30px; */
+
+  border-radius: 20px;
 
   position: relative;
   z-index: 2;

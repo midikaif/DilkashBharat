@@ -1,6 +1,5 @@
 <% layout('layouts/boilerplate') %>
 <div class='home-page'>
-<section class="hero"></section>
 <!-- Background Floating Images (Unchanged) -->
 <div class="floating-mountain-container overflow-hidden">
   <!-- Group 1: Mouse-following images (8 images) -->
@@ -38,7 +37,7 @@
     src="https://images.unsplash.com/photo-1494806812796-244fe51b774d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=867"
     alt="Floating Mountain Image 6"
     class="floating-image mouse-follow"
-    style="top: 85%; left: 40%"
+    style="top: 35%; left: 40%"
   />
   <img
     src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870"
@@ -87,7 +86,7 @@
       left: 30%;
       animation-name: floatDriftTLBR;
       animation-duration: 20s;
-      animation-delay: 0s;
+      animation-delay: 4s;
     "
   />
   <img
@@ -123,7 +122,7 @@
       left: 5%;
       animation-name: floatDriftTRBL;
       animation-duration: 24s;
-      animation-delay: 2s;
+      animation-delay: 0s;
     "
   />
   <img
@@ -135,7 +134,7 @@
       left: 95%;
       animation-name: floatDriftTLBR;
       animation-duration: 18s;
-      animation-delay: 4s;
+      animation-delay: 1s;
     "
   />
   <img
@@ -159,7 +158,7 @@
       left: 20%;
       animation-name: floatDriftTLBR;
       animation-duration: 16s;
-      animation-delay: 8s;
+      animation-delay: 4s;
     "
   />
   <img
@@ -171,7 +170,7 @@
       left: 70%;
       animation-name: floatDriftTRBL;
       animation-duration: 19s;
-      animation-delay: 10s;
+      animation-delay: 3s;
     "
   />
   <img
@@ -183,9 +182,10 @@
       left: 5%;
       animation-name: floatDriftTLBR;
       animation-duration: 25s;
-      animation-delay: 12s;
+      animation-delay: 1s;
     "
   />
+
 </div>
 
 <!-- Main Glassmorphism Content Card - Split 50% info, 50% slider -->
@@ -228,6 +228,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
       </a>
     </div>
+
   </div>
 
   <!-- RIGHT HALF: Auto-Scrolling Slider Section -->
@@ -260,11 +261,13 @@
         <button id="nextBtn" class="nav-button" aria-label="Next Slide">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
         </button>
+
       </div>
     </div>
+
   </div>
 </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-  <script src="/js/home.js"></script>
+<script src="/js/home.js"></script>
 </div>
